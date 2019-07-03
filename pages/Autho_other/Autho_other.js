@@ -56,6 +56,8 @@ Page({
       grantorAutho: wx.getStorageSync('grantorAutho'),
       grantorUnauthoRefuse: wx.getStorageSync('grantorUnauthoRefuse')
     })
+    console.log('打印未授权数目');
+    console.log(wx.getStorageSync('grantorUnautho').length);
   },
 
   toDetail: function (e) {

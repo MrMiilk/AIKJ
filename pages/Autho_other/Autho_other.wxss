@@ -94,14 +94,17 @@ page{
   padding-left:20rpx;
 }
 .name{
-  line-height: 130rpx;
-  width:150rpx;
+line-height:130rpx;
+width:450rpx;
+padding-left:30rpx;
+display:flex;
+justify-content:flex-start;
 }
 .btn_waitAccept{
   height: 60rpx;
   width: 150rpx;
   border-radius: 25rpx;
-  margin-left:300rpx;
+  margin-left:30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
@@ -113,7 +116,7 @@ page{
   height: 60rpx;
   width: 150rpx;
   border-radius:25rpx;
-  margin-left:300rpx;
+  margin-left:30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
@@ -123,7 +126,7 @@ page{
   height: 60rpx;
   width: 150rpx;
   border-radius: 25rpx;
-  margin-left:300rpx;
+  margin-left:30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
@@ -133,7 +136,7 @@ page{
  height: 60rpx;
   width: 150rpx;
   border-radius: 25rpx;
-  margin-left:300rpx;
+  margin-left:30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;

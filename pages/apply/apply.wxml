@@ -25,7 +25,7 @@
           <picker mode="date" value="{{authEndTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='authEndTime'>
             <view class="newP"> <view class="name">止</view>
             <view class="picker">
-              {{authStartTime}}
+              {{authEndTime}}
             </view></view>
           </picker>
         </view>
