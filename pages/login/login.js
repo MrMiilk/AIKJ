@@ -57,18 +57,13 @@ Page({
       util.getApplyList(() => {
         that.setData({
           numApply: wx.getStorageSync('granteeUnautho').length,
-          // numAutho: wx.getStorageSync('grantorUnautho').length,
         });
       });
       util.getAuthoList(()=>{
         that.setData({
-          // numApply: wx.getStorageSync('granteeUnautho').length,
           numAutho: wx.getStorageSync('grantorUnautho').length,
         });
       });
-      // console.log(that.data.numApply);
-      
-      // console.log(wx.getStorageSync('granteeUnautho').length);
     });
     
   },
@@ -78,11 +73,7 @@ Page({
    */
   getUserInfo: function () {
     let that = this;
-
     let userInfo = app.globalData.userInfo;
-
-   // console.info('userInfo is:', userInfo);
-
     if (userInfo) {
       that.setData({
         hasLogin: true,
@@ -91,7 +82,6 @@ Page({
       wx.hideLoading();
     } else {
       console.log('globalData中userInfo为空');
-      
     }
   },
 

@@ -1,30 +1,29 @@
-<!--pages/apply_list_1/apply_list.wxml-->
-    <scroll-view scroll-y="true" class="tab-content recharge-list">
-      <view class="container">
-         <view class="client_info_deal" bindtap='goApply'> <image src="../../images/add.png" class="userinfo-avatar" background-size="cover"></image><view class="name">添加申请</view></view>
-        <view wx:for="{{granteeUnautho}}">
-          <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="4">
-            <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover"  data-tp="4"></image>
-            <view class="name" data-tp="4">{{item.user}}</view>
-            <view class="btn_waitAccept" hover="true" hover-class="btn_waitAccept_hover" data-tp="4">待接受</view>
-          </view>
-          <view class="width-line"/>
-        </view>
-        <view wx:for="{{granteeAutho}}">
-          <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="5">
-            <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover"data-tp="5"></image>
-            <view class="name" data-tp="5">{{item.user}}</view>
-            <view class="btn_accept" data-tp="5">已接受</view>
-          </view>
-          <view class="width-line"/>
-        </view>
-        <view wx:for="{{granteeUnauthoRefuse}}">
-          <view class="client_info_Refuse"  bindtap='toDetail' id="{{index}}" data-tp="6">
-            <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover" data-tp="6"></image>
-            <view class="name" data-tp="6">{{item.user}}</view>
-            <view class="btn_accept_r" data-tp="6">已拒绝</view>
-          </view>
-          <view class="width-line"/>
-        </view>
+<scroll-view scroll-y="true" class="tab-content recharge-list">
+  <view class="container">
+    <view class="client_info_deal" bindtap='goApply'> <image src="../../images/add.png" class="userinfo-avatar" background-size="cover"></image><view class="name">添加申请</view></view>
+    <view wx:for="{{granteeUnautho}}">
+      <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="4">
+        <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover"  data-tp="4"></image>
+        <view class="name" data-tp="4">{{item.user}}</view>
+        <view class="btn_waitAccept" hover="true" hover-class="btn_waitAccept_hover" data-tp="4">待接受</view>
       </view>
-    </scroll-view>
+      <view class="width-line"/>
+    </view>
+    <view wx:for="{{granteeAutho}}">
+      <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="5">
+        <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover"data-tp="5"></image>
+        <view class="name" data-tp="5">{{item.user}}</view>
+        <view class="btn_accept" data-tp="5">已接受</view>
+      </view>
+      <view class="width-line"/>
+    </view>
+    <view wx:for="{{granteeUnauthoRefuse}}">
+      <view class="client_info_Refuse"  bindtap='toDetail' id="{{index}}" data-tp="6">
+        <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover" data-tp="6"></image>
+        <view class="name" data-tp="6">{{item.user}}</view>
+        <view class="btn_accept_r" data-tp="6">已拒绝</view>
+      </view>
+      <view class="width-line"/>
+    </view>
+  </view>
+</scroll-view>

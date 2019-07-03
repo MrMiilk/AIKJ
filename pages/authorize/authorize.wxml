@@ -10,7 +10,6 @@
         </view>
       </view>
       <!-- 账单类型 -->
-      
 
       <!-- 时间范围 -->
       <view class="time_selection">
@@ -21,26 +20,34 @@
         <view class="time-choose">
           <!-- 开始时间 -->
           <picker mode="date" value="{{authStartTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='authStartTime' wx:if="{{tp==1}}">
-           <view class="newP"><view class="name">起</view>
-            <view class="picker">
-              {{authStartTime}}
-            </view></view>
+            <view class="newP">
+              <view class="name">起</view>
+              <view class="picker">
+                {{authStartTime}}
+              </view>
+            </view>
           </picker>
-          <view class="newP" wx:else><view  class="name">起</view>
+          <view class="newP" wx:else>
+            <view class="name">起</view>
             <view class="picker">
               {{authStartTime}}
-            </view></view>
+            </view>
+          </view>
           <!-- 结束时间 -->
           <picker mode="date" value="{{authEndTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='authEndTime' wx:if="{{tp==1}}">
-            <view class="newP"><view class="name">止</view>
-            <view class="picker">
-              {{authEndTime}}
-            </view></view>
+            <view class="newP">
+              <view class="name">止</view>
+              <view class="picker">
+                {{authEndTime}}
+              </view>
+            </view>
           </picker>
-          <view class="newP" wx:else><view class="name" >止</view>
+          <view class="newP" wx:else>
+            <view class="name">止</view>
             <view class="picker">
               {{authEndTime}}
-            </view></view>
+            </view>
+          </view>
         </view>
       </view>
 
@@ -51,30 +58,38 @@
         <view class="time-choose">
           <!-- 开始时间 -->
           <picker mode="date" value="{{recordStartTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='recordStartTime' wx:if="{{tp==1}}">
-             <view class="newP"><view class="name">起</view>
-            <view class="picker">
-              {{recordStartTime}}
-            </view></view>
+            <view class="newP">
+              <view class="name">起</view>
+              <view class="picker">
+                {{recordStartTime}}
+              </view>
+            </view>
           </picker>
-          <view class="newP" wx:else><view class="name" >起</view>
+          <view class="newP" wx:else>
+            <view class="name">起</view>
             <view class="picker">
               {{recordStartTime}}
-            </view></view>
+            </view>
+          </view>
           <!-- 结束时间 -->
           <picker mode="date" value="{{recordEndTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='recordEndTime' wx:if="{{tp==1}}">
-            <view class="newP"><view class="name">止</view>
-            <view class="picker">
-              {{recordEndTime}}
-            </view></view>
+            <view class="newP">
+              <view class="name">止</view>
+              <view class="picker">
+                {{recordEndTime}}
+              </view>
+            </view>
           </picker>
-          <view class="newP" wx:else><view class="name">止</view>
+          <view class="newP" wx:else>
+            <view class="name">止</view>
             <view class="picker">
               {{recordEndTime}}
-            </view></view>
+            </view>
+          </view>
         </view>
       </view>
     </form>
   </view>
   <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="agree" wx:if="{{tp==1}}">完成</button>
-   <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="refuse" wx:if="{{tp==1}}">拒绝申请</button>
+  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="refuse" wx:if="{{tp==1}}">拒绝申请</button>
 </view>

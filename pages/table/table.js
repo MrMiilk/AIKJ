@@ -49,7 +49,6 @@ Page({
       {
         '基本每股收益': 0,
         '稀释每股收益': 1,
-        '': 2,
       },
     ],
     profitView: [],   //最终呈现条目
@@ -151,7 +150,6 @@ Page({
         '未分配利润': 8,
         '所有者权益（或股东权益）合计': 9,
         '负债和所有者权益（或股东权益）合计': 10,
-        '': 11,
       }
     ],
     balanceView: [],  //最终呈现条目
@@ -205,7 +203,6 @@ Page({
       },
       {
         '期末现金及现金等价物余额': 0,
-        '': 1,
       },
     ],
     cashFlowView: [], //最终呈现条目
@@ -217,6 +214,7 @@ Page({
       title: '报表生成中..',
     })
     this.setData({
+      profitData: wx.getStorageSync('table').profit,
       balanceData: wx.getStorageSync('table').balance,
       cashFlowData: wx.getStorageSync('table').cashFlow,
     })
@@ -298,7 +296,6 @@ Page({
     });
   },
   onReady:function(){
-    wx.hideLoading()
     var query = wx.createSelectorQuery().in(this),
       _this = this;
     _this.animation = wx.createAnimation({
@@ -322,6 +319,8 @@ Page({
       _this.setActiveTab('tabitemProfit');
     })
     query.exec();
+    
+    wx.hideLoading()
   },
    tabChange(e) {
     if (e.detail.source == "touch") {

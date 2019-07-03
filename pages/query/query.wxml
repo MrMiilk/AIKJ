@@ -16,14 +16,14 @@
         <view class="time-choose">
           <!-- 开始时间 -->
           <picker mode="date" value="{{recordStartTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='recordStartTime'>
-          <view class="newP"><view class="name" > 起</view>
+          <view class="newP"><view class="name" > 起 :</view>
             <view class="picker">
               {{recordStartTime}}
             </view></view>
           </picker>
           <!-- 结束时间 -->
           <picker mode="date" value="{{recordEndTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='recordEndTime'>
-          <view class="newP"><view class="name">止</view>
+          <view class="newP"><view class="name">止 :</view>
             <view class="picker">
               {{recordEndTime}}
             </view></view>

@@ -71,6 +71,7 @@
             </view>
           </view>
         </block>
+        <view class="Gap"></view>
       </scroll-view>
     </swiper-item>
     <swiper-item item-id="tabitemDebit">
@@ -137,6 +138,7 @@
             </view>
           </view>
         </block>
+        <view class="Gap"></view>
       </scroll-view>
     </swiper-item>
     <swiper-item item-id="tabitemCash">
@@ -197,6 +199,7 @@
             </view>
           </view>
         </block>
+        <view class="Gap"></view>
       </scroll-view>
     </swiper-item>
   </swiper>

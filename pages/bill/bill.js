@@ -198,6 +198,7 @@ Page({
       success: function(res) {
         // TODO:应该使用返回的数据进行判断
         if(res.statusCode == 200){
+          console.log("成功：" + res)
           wx.showToast({
             title: '记账成功',
             icon: 'success',
@@ -217,7 +218,7 @@ Page({
       },
       fail: function(res) {
         // 网络请求失败
-        console.log(res)
+        console.log("失败："+res)
       }
     })
   },

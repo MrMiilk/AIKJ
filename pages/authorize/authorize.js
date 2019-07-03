@@ -22,20 +22,21 @@ Page({
 
   bindDateChange: function (e) {
     if (e.target.id == 'authStartTime') {
+      console.log("授权开始时间")
       this.setData({
         authStartTime: e.detail.value,
-        authEndTime: e.detail.value
       })
     }
     else if (e.target.id == 'authEndTime') {
-      this.setData({
+      var that = this;
+      console.log(e.detail.value)
+      that.setData({
         authEndTime: e.detail.value
       })
     }
     else if (e.target.id == 'recordStartTime') {
       this.setData({
         recordStartTime: e.detail.value,
-        recordEndTime: e.detail.value
       })
     }
     else if (e.target.id == 'recordEndTime') {
@@ -84,7 +85,7 @@ Page({
         setTimeout(function () {
           wx.navigateBack({
             delta: 1,
-          })},1000);//设置延时，确认让用户知道登陆成功
+          })},500);//设置延时
       },
       fail: function(e) {
         wx.showToast({

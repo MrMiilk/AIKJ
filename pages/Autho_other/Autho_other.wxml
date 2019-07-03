@@ -1,30 +1,28 @@
-
-
-    <scroll-view scroll-y="true" class="tab-content recharge-list">
-        <view class="container">
-          <view wx:for="{{grantorUnautho}}">
-            <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="1">
-              <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="1"></image>
-              <view class="name" data-tp="1">{{item.user}}</view>
-              <view class="btn_waitAccept" hover="true" hover-class="btn_waitAccept_hover" data-tp="1" >待授权</view>
-            </view>
-            <view class="width-line"/>
-          </view>
-          <view wx:for="{{grantorAutho}}">
-            <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="2">
-              <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="2"></image>
-              <view class="name" data-tp="2">{{item.user}}</view>
-              <view class="btn_accept" data-tp="2">已授权</view>
-            </view>
-            <view class="width-line"/>
-          </view>
-          <view wx:for="{{grantorUnauthoRefuse}}">
-            <view class="client_info_Refuse"  bindtap='toDetail' id="{{index}}" data-tp="3">
-              <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="3"></image>
-              <view class="name" data-tp="3">{{item.user}}</view>
-              <view class="btn_accept_r" data-tp="3">已拒绝</view>
-            </view>
-            <view class="width-line"/>
-          </view>
-        </view>
-    </scroll-view>
+<scroll-view scroll-y="true" class="tab-content recharge-list">
+  <view class="container">
+    <view wx:for="{{grantorUnautho}}">
+      <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="1">
+        <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="1"></image>
+        <view class="name" data-tp="1">{{item.user}}</view>
+        <view class="btn_waitAccept" hover="true" hover-class="btn_waitAccept_hover" data-tp="1" >待授权</view>
+      </view>
+      <view class="width-line"/>
+    </view>
+    <view wx:for="{{grantorAutho}}">
+      <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="2">
+        <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="2"></image>
+        <view class="name" data-tp="2">{{item.user}}</view>
+        <view class="btn_accept" data-tp="2">已授权</view>
+      </view>
+      <view class="width-line"/>
+    </view>
+    <view wx:for="{{grantorUnauthoRefuse}}">
+      <view class="client_info_Refuse"  bindtap='toDetail' id="{{index}}" data-tp="3">
+        <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="3"></image>
+        <view class="name" data-tp="3">{{item.user}}</view>
+        <view class="btn_accept_r" data-tp="3">已拒绝</view>
+      </view>
+      <view class="width-line"/>
+    </view>
+  </view>
+</scroll-view>
