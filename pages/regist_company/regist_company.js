@@ -28,18 +28,18 @@ Page({
     var val = e.detail.value;
     var _this=this;
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/
-    if(val[0]!='1'||val.length>11)
+    if(val.length>11)
      {
       _this.setData({
         hidden: true,
         btnValue: ''
       })
        wx.showToast({
-         title: '手机格式不正确',
+         title: '手机号数过多',
          icon:'none',
        })
      }
-     else if(val.length==11)
+     if(val.length==11)
     {
       if(!myreg.test(val)){
         wx.showToast({

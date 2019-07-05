@@ -8,6 +8,7 @@
 .newP{
   display:flex;
   flex-direction:row;
+  align-items: center;
 }
 .container{
   display: flex;
@@ -15,4 +16,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;  
+}
+.icon-SR-2 {
+  height: 60rpx;
+  width: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

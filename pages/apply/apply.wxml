@@ -2,7 +2,7 @@
   <view class="page-body">
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="page-section">
-        <view class="page-section-title">申请对象</view>
+        <view class="page-section-title">公司名称</view>
         <view class="weui-cell__bd">
           <input class="weui-input" name="name" value="{{companyName}}" disabled='{{disabled_name}}' bindinput="inputComName"/>
         </view>
@@ -10,7 +10,7 @@
 
       <view class="time_selection">
         <view class="page-section-title">
-          授权时间
+          查询有效期
         </view>
         <view class="time-choose">
           <!-- 开始时间 -->
@@ -32,7 +32,7 @@
       <view class="time_selection">
         <!-- 时间选择器 -->
         <view class="page-section-title">
-          记录时间
+          账单日期
         </view>
         <view class="time-choose">
           <!-- 开始时间 -->

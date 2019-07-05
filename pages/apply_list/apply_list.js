@@ -55,7 +55,6 @@ Page({
   onLoad:function(){
   },
   onShow: function () {
-    util.getApplyList();
     this.setData({
       granteeUnautho: wx.getStorageSync('granteeUnautho'),
       granteeAutho: wx.getStorageSync('granteeAutho'),
