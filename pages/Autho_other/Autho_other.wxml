@@ -1,6 +1,7 @@
 <scroll-view scroll-y="true" class="tab-content recharge-list">
   <view class="container">
-    <view wx:for="{{grantorUnautho}}">
+    <view class="Wait_ac">
+     <view wx:for="{{grantorUnautho}}">
       <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="1">
         <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="1"></image>
         <view class="name" data-tp="1">{{item.user}}</view>
@@ -8,6 +9,8 @@
       </view>
       <view class="width-line"/>
     </view>
+   </view>
+    <view class="Wait_ac">
     <view wx:for="{{grantorAutho}}">
       <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="2">
         <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="2"></image>
@@ -16,6 +19,8 @@
       </view>
       <view class="width-line"/>
     </view>
+    </view>
+    <view class="Wait_ac">
     <view wx:for="{{grantorUnauthoRefuse}}">
       <view class="client_info_Refuse"  bindtap='toDetail' id="{{index}}" data-tp="3">
         <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="3"></image>
@@ -25,4 +30,5 @@
       <view class="width-line"/>
     </view>
   </view>
+    </view>
 </scroll-view>

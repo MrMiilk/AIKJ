@@ -94,8 +94,8 @@ icon {
     border: 1px solid #FFFFFF;
     background-color: white; 
     margin-left: 20rpx;
-    display: flex
-
+    display: flex;
+    box-shadow: 0 2px 16px 2px rgba(0,0,0,0.03);
 }
 .weui-cell__ft {
   text-align: right;
@@ -1064,7 +1064,7 @@ icon {
   background-color: #fac589;
   color: white;
   width:500rpx;
-  border-radius: 50rpx;
+  border-radius: 30rpx;
 }
 .button-BILL-1-p{
   margin:150rpx;
@@ -1089,17 +1089,14 @@ form{
   position: relative;
 }
 .picker{
-  height: 70rpx;
-  background-color: #FFFFFF;
-  border: 1rpx solid #727171;
-  margin: 10rpx;
-  border-radius:15rpx;
-  width:250rpx;
-  margin-left:20rpx;
- justify-content:center;
- display:flex;
-
-
+  height:70rpx;
+border-top:0.5px dashed #aad08f;
+margin:10rpx;
+width:250rpx;
+margin-left:20rpx;
+justify-content:center;
+display:flex;
+border-bottom:0.5px dashed #aad08f;
 }
 .page-section-title{
   position: relative;
@@ -1116,9 +1113,10 @@ form{
   flex-direction: row;
 }
 .time-choose {
-  display: flex;
-  flex-direction: column;
-  margin-left:160rpx;
+display:flex;
+flex-direction:column;
+margin-left:120rpx;
+
 }
 .page-section{
   margin-bottom: 40rpx;

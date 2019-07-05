@@ -74,7 +74,7 @@ border:1rpx solid black;
   font-weight: 400;
 }
 .tabitem-active {
-  color: #a686ba;
+  color: #76a2f5;
 }
 .tabindicator {
   position: absolute;

@@ -71,24 +71,24 @@ Page({
     //这里获得验证码
     var _this=this;
     //向对应服务器发起请求，获得验证码
-    wx.request({
-      url: 'http://127.0.0.1:8080/',
-      header:{
-        "Content-Type":"application/json"
-      },
-      method:'POST',
-      data:{
-        token:wx.getStorageSync("token"),
-        phone:this.data.phone,
-      },
-      success(res){
-        console.log(res);
-        _this.setData({
-          isCode:res.data
-        })
-        console.log(_this.data.isCode);
-      }
-    })
+    // wx.request({
+    //   url: 'http://127.0.0.1:8080/',
+    //   header:{
+    //     "Content-Type":"application/json"
+    //   },
+    //   method:'POST',
+    //   data:{
+    //     token:wx.getStorageSync("token"),
+    //     phone:this.data.phone,
+    //   },
+    //   success(res){
+    //     console.log(res);
+    //     _this.setData({
+    //       isCode:res.data
+    //     })
+    //     console.log(_this.data.isCode);
+    //   }
+    // })
     this.timer();
   },
   timer: function () {
@@ -119,7 +119,7 @@ Page({
   //获得信息，1234是发起请求，服务返回是预期的验证码
   getMessage:function(){
     var that=this;
-    if(this.data.code=="1234"&&this.data.companyName!=''){
+    if(this.data.code=="1234"){
       wx.request({
         url: config.registUrl,
         data: {
@@ -139,18 +139,18 @@ Page({
             wx.navigateBack({
               delta: 1,
             })
-          }else if(res.statusCode==404){
-            console.log(that.data.currentText);
+          }else {
             wx.showToast({
-              title: '公司名已注册',
+              title: res.data,
               icon: 'none',
             })
+            console.log(res);
           }
         },
         fail: function (res) {
-          console.log(res)
+         
           wx.showToast({
-            title: '注册失败',
+            title: '请检查网络状态',
             icon: 'none',
           })
         }
@@ -159,6 +159,7 @@ Page({
       console.log(this.data);
     }
     else{
+      console.log(res);
       wx.showToast({
         title: '验证码或手机号错误',
         icon:'none',

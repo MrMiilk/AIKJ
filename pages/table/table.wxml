@@ -3,14 +3,13 @@
     <text id="tabitemProfit" class='tabitem {{activeTabId=="tabitemProfit"?"tabitem-active":""}}' bindtap='tabclick'>利润表</text>
     <text id="tabitemDebit" class='tabitem {{activeTabId=="tabitemDebit"?"tabitem-active":""}}' bindtap='tabclick'>资产负载表</text>
     <text id="tabitemCash" class='tabitem {{activeTabId=="tabitemCash"?"tabitem-active":""}}' bindtap='tabclick'>现金流量表</text>
-    <view class='tabindicator' animation="{{indicatorAnim}}"></view>
   </view>
 
   <swiper style='height={{clientHeight}}px-80rpx' duration="200" circular="true" easing-function="easeInOutCubic" current-item-id='{{activeTabId}}' bindchange='tabChange'>
     <swiper-item item-id="tabitemProfit">
       <scroll-view class="table" style='height={{clientHeight}}px-80rpx' scroll-y="true">
         <block wx:for="{{profitItems}}">
-          <view wx:if="{{index == 0}}">
+           <view wx:if="{{index == 0}}">
             <view class="tr bg-w">
               <view class="th">一、营业收入</view>
               <view class="th_">金额(元)</view>
@@ -52,21 +51,27 @@
               <view class="th_">金额(元)</view>
             </view>
           </view>
-          <view wx:for="{{item}}" wx:for-index="text" wx:for-item="i">
+          <view wx:for="{{item}}" wx:for-item="text" wx:for-index="i">
             <view class="tr bg-g" wx:if="{{i % 2 == 0}}">
               <view class="td">
                 <text class="name">{{text}}</text>
               </view>
-              <view class="td_">
-                <text class="name">{{profitView[index][i]}}</text>
+              <view class="td_" wx:if="{{profitData[text]}}">
+                <text class="name">{{profitData[text]}}</text>
+              </view>
+              <view class="td_" wx:else>
+                <text class="name">0</text>
               </view>
             </view>
             <view class="tr bg-g1" wx:else>
               <view class="td">
                 <text class="name">{{text}}</text>
               </view>
-              <view class="td_">
-                <text class="name">{{profitView[index][i]}}</text>
+              <view class="td_" wx:if="{{profitData[text]}}">
+                <text class="name">{{profitData[text]}}</text>
+              </view>
+              <view class="td_" wx:else>
+                <text class="name">0</text>
               </view>
             </view>
           </view>
@@ -76,7 +81,7 @@
     </swiper-item>
     <swiper-item item-id="tabitemDebit">
       <scroll-view class="table" scroll-x="true" scroll-y="true">
-        <block wx:for="{{balanceItems}}">
+        <!--block wx:for="{{balanceItems}}">
           <view wx:if="{{index == 0}}">
             <view class="tr bg-w">
               <view class="th">流动资产</view>
@@ -137,13 +142,81 @@
               </view>
             </view>
           </view>
+        </block-->
+        <block wx:for="{{balanceItems}}">
+          <view wx:if="{{index == 0}}">
+            <view class="tr bg-w">
+              <view class="th">流动资产</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 1}}">
+            <view class="tr bg-w">
+              <view class="th">非流动资产</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 2}}">
+            <view class="tr bg-w">
+              <view class="th">资产合计</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 3}}">
+            <view class="tr bg-w">
+              <view class="th">流动负债</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 4}}">
+            <view class="tr bg-w">
+              <view class="th">非流动负债</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 5}}">
+            <view class="tr bg-w">
+              <view class="th">负债合计</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 6}}">
+            <view class="tr bg-w">
+              <view class="th">所有者权益(或股东权益):</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:for="{{item}}" wx:for-item="text" wx:for-index="i">
+            <view class="tr bg-g" wx:if="{{i % 2 == 0}}">
+              <view class="td">
+                <text class="name">{{text}}</text>
+              </view>
+              <view class="td_" wx:if="{{balanceData[text]}}">
+                <text class="name">{{balanceData[text]}}</text>
+              </view>
+              <view class="td_" wx:else>
+                <text class="name">0</text>
+              </view>
+            </view>
+            <view class="tr bg-g1" wx:else>
+              <view class="td">
+                <text class="name">{{text}}</text>
+              </view>
+              <view class="td_" wx:if="{{balanceData[text]}}">
+                <text class="name">{{balanceData[text]}}</text>
+              </view>
+              <view class="td_" wx:else>
+                <text class="name">0</text>
+              </view>
+            </view>
+          </view>
         </block>
         <view class="Gap"></view>
       </scroll-view>
     </swiper-item>
     <swiper-item item-id="tabitemCash">
       <scroll-view class="table" scroll-x="true" scroll-y="true">
-        <block wx:for="{{cashFlowItems}}">
+        <!--block wx:for="{{cashFlowItems}}">
           <view wx:if="{{index == 0}}">
             <view class="tr bg-w">
               <view class="th">一、经营活动产生的现金流量:</view>
@@ -195,6 +268,68 @@
               </view>
               <view class="td_">
                 <text class="name">{{cashFlowView[index][i]}}</text>
+              </view>
+            </view>
+          </view>
+        </block-->
+        <block wx:for="{{cashFlowItems}}">
+          <view wx:if="{{index == 0}}">
+            <view class="tr bg-w">
+              <view class="th">一、经营活动产生的现金流量:</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 1}}">
+            <view class="tr bg-w">
+              <view class="th">二、投资活动产生的现金流量净额:</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 2}}">
+            <view class="tr bg-w">
+              <view class="th">三、筹资活动产生的现金流量</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 3}}">
+            <view class="tr bg-w">
+              <view class="th">四、汇率变动对现金及现金等价物的影响</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 4}}">
+            <view class="tr bg-w">
+              <view class="th">五、现金及现金等价物净增加额</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:elif="{{index == 5}}">
+            <view class="tr bg-w">
+              <view class="th">六、期末现金及现金等价物余额</view>
+              <view class="th_">金额(元)</view>
+            </view>
+          </view>
+          <view wx:for="{{item}}" wx:for-item="text" wx:for-index="i">
+            <view class="tr bg-g" wx:if="{{i % 2 == 0}}">
+              <view class="td">
+                <text class="name">{{text}}</text>
+              </view>
+              <view class="td_" wx:if="{{cashFlowData[text]}}">
+                <text class="name">{{cashFlowData[text]}}</text>
+              </view>
+              <view class="td_" wx:else>
+                <text class="name">0</text>
+              </view>
+            </view>
+            <view class="tr bg-g1" wx:else>
+              <view class="td">
+                <text class="name">{{text}}</text>
+              </view>
+              <view class="td_" wx:if="{{cashFlowData[text]}}">
+                <text class="name">{{cashFlowData[text]}}</text>
+              </view>
+              <view class="td_" wx:else>
+                <text class="name">0</text>
               </view>
             </view>
           </view>

@@ -152,3 +152,7 @@ justify-content:flex-start;
 .container {
   padding: 0;
 }
+.Wait_ac{
+  display: flex;
+  flex-direction: column-reverse;
+}

@@ -219,9 +219,9 @@ page {
   margin: 100rpx;
   background-color: #537750;
   color: white;
-  align-self:center;
-
+  align-self:center
 }
+button::after{ border: none; }
 .picker{
 height:70rpx;
 margin:10rpx;

@@ -159,3 +159,7 @@ justify-content:flex-start;
   height: 0;
   color: transparent;
 }
+.Wait_ac{
+  display: flex;
+  flex-direction: column-reverse;
+}

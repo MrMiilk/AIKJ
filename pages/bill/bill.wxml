@@ -71,7 +71,7 @@
           </view>
 
           <!--完成按钮-->
-          <button class="button-BILL-1" hover-class="button-BILL-1-p"  bindtap="confirmData">完成</button>
+          <button class="button-BILL-1" hover-class="button-BILL-1-p" disabled='{{overed}}'  bindtap="confirmData">完成</button>
         </view>
       </scroll-view>
     </swiper-item>

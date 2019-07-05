@@ -21,6 +21,8 @@ Page({
     credit: "",           //贷方科目
     creditAmount: null,   //贷方金额
     date: "",       //日期
+
+    overed: false,   //完成按钮是否可按
   },
 
   tabChange(e) {
@@ -98,13 +100,13 @@ Page({
     var that = this;
     /* 得到完整识别内容发给语音服务器处理 */
     wx.request({
+      //url: config.voiceUrl,
       url: 'http://192.168.1.2:80/api/analysis/analysis',
       data: {
         "text": this.data.currentText,
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         that.setData({
           summary: res.data.data[0].summary,
           debit: res.data.data[0].debit,
@@ -180,6 +182,10 @@ Page({
       return;
     }
 
+    that.setData({
+      overed: true,//按钮不可按
+    })
+
     //精确到秒，定位为当天12点
     var unixtime = util.formatToDate(that.data.date)/1000 + 14400;
   
@@ -198,7 +204,6 @@ Page({
       success: function(res) {
         // TODO:应该使用返回的数据进行判断
         if(res.statusCode == 200){
-          console.log("成功：" + res)
           wx.showToast({
             title: '记账成功',
             icon: 'success',
@@ -206,19 +211,25 @@ Page({
             success: function () {
             }
           })
-        }else if(res.statusCode == 400){
+        }else{
           wx.showToast({
             title: res.data,
-            icon: 'fail',
+            icon: 'none',
             duration: 500,
             success: function () {
             }
           })
         }
+        that.setData({
+          overed: false,
+        })
       },
       fail: function(res) {
         // 网络请求失败
-        console.log("失败："+res)
+        console.log("失败：" + res)
+        that.setData({
+          overed: false,
+        })
       }
     })
   },
@@ -228,6 +239,13 @@ Page({
     this.initRecord()
   },
   onReady: function () {
+
+    this.setData({
+      date: util.formatTime(new Date(), "yyyy-MM-dd"),
+    });
+  },
+
+  onShow: function () {
     /* 滑动动画相关 */
     var query = wx.createSelectorQuery().in(this),
       _this = this;
@@ -247,9 +265,5 @@ Page({
       _this.setActiveTab('tabitemVoice');
     })
     query.exec();
-
-    this.setData({
-      date: util.formatTime(new Date(), "yyyy-MM-dd"),
-    });
   },
 })

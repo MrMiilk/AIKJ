@@ -6,11 +6,11 @@ Page({
   data: {
     disabled_name: false,
     companyName: '',
-    authStartTime: '2019-06-01',
-    authEndTime: '2019-07-01',
-    recordStartTime: '2019-03-01',
-    recordEndTime: '2019-06-01',
-    begin: '2000-06-01',
+    authStartTime: '',
+    authEndTime: '',
+    recordStartTime: '',
+    recordEndTime: '',
+    begin: '1950-06-01',
     end: '2100-06-01',
     name: '',
   },
@@ -54,7 +54,7 @@ Page({
         }
         else{
           wx.showToast({
-            title: '公司名不存在',
+            title: e.data,
             icon: 'none',
           })
         }
@@ -72,7 +72,6 @@ Page({
     if (e.target.id == 'authStartTime') {
       this.setData({
         authStartTime: e.detail.value,
-        authEndTime: e.detail.value
       })
     }
     else if (e.target.id == 'authEndTime') {
@@ -84,7 +83,6 @@ Page({
     else if (e.target.id == 'recordStartTime') {
       this.setData({
         recordStartTime: e.detail.value,
-        recordEndTime: e.detail.value
       })
     }
     else if (e.target.id == 'recordEndTime') {
@@ -93,4 +91,13 @@ Page({
       })
     }
   },
+
+  onReady: function () {
+    this.setData({
+      authStartTime: util.formatTime(new Date(), "yyyy-MM-dd"),
+      authEndTime: util.formatTime(new Date(), "yyyy-MM-dd"),
+      recordStartTime: util.formatTime(new Date(), "yyyy-MM-dd"),
+      recordEndTime: util.formatTime(new Date(), "yyyy-MM-dd"),
+    })
+  }
 })

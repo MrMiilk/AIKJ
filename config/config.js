@@ -2,9 +2,11 @@
 
 const baseUrl = 'http://192.168.1.10:8848/';
 const testUrl = 'http://192.168.1.10:8848/';
-const testUrl_1 = 'http://192.168.1.5:7500/';
+const voicebaseUrl = 'http://192.168.1.10:80/';
 // 登录接口
 const loginUrl = baseUrl + 'login';
+// 语音分录服务器
+const voiceUrl = voicebaseUrl + 'api/analysis/analysis';
 // 申请列表查询接口
 const granteeUnauthoUrl = baseUrl + 'granteeUnautho';
 const granteeAuthoUrl = baseUrl + 'granteeAutho';
@@ -26,6 +28,7 @@ const requestAuthoUrl = baseUrl + 'requestAutho'
 
 module.exports = {
   loginUrl: loginUrl,
+  voiceUrl: voiceUrl,
   registUrl: registUrl,
   granteeUnauthoUrl: granteeUnauthoUrl,
   granteeAuthoUrl: granteeAuthoUrl,

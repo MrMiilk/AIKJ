@@ -41,6 +41,7 @@ Page({
   /* 下拉刷新，自动监听 */
   onPullDownRefresh: function () {
     util.getAuthoList();
+    this.onShow();
   },
 
   onReady: function () {
@@ -56,8 +57,6 @@ Page({
       grantorAutho: wx.getStorageSync('grantorAutho'),
       grantorUnauthoRefuse: wx.getStorageSync('grantorUnauthoRefuse')
     })
-    console.log('打印未授权数目');
-    console.log(wx.getStorageSync('grantorUnautho').length);
   },
 
   toDetail: function (e) {

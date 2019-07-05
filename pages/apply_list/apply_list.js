@@ -46,6 +46,7 @@ Page({
   /* 下拉刷新，获取最新申请列表*/
   onPullDownRefresh: function () {
     util.getApplyList();
+    this.onShow();
   },
   
   onReady: function () {

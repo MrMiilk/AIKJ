@@ -1,7 +1,8 @@
 <scroll-view scroll-y="true" class="tab-content recharge-list">
   <view class="container">
     <view class="client_info_deal" bindtap='goApply'> <image src="../../images/add.png" class="userinfo-avatar" background-size="cover"></image><view class="name">添加申请</view></view>
-    <view wx:for="{{granteeUnautho}}">
+    <view class="Wait_ac">
+     <view wx:for="{{granteeUnautho}}">
       <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="4">
         <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover"  data-tp="4"></image>
         <view class="name" data-tp="4">{{item.user}}</view>
@@ -9,6 +10,8 @@
       </view>
       <view class="width-line"/>
     </view>
+    </view>
+    <view class="Wait_ac">
     <view wx:for="{{granteeAutho}}">
       <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="5">
         <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover"data-tp="5"></image>
@@ -16,7 +19,8 @@
         <view class="btn_accept" data-tp="5">已接受</view>
       </view>
       <view class="width-line"/>
-    </view>
+    </view></view>
+    <view class="Wait_ac">
     <view wx:for="{{granteeUnauthoRefuse}}">
       <view class="client_info_Refuse"  bindtap='toDetail' id="{{index}}" data-tp="6">
         <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover" data-tp="6"></image>
@@ -26,4 +30,5 @@
       <view class="width-line"/>
     </view>
   </view>
+    </view>
 </scroll-view>

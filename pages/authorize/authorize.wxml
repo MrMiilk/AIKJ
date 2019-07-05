@@ -90,6 +90,6 @@
       </view>
     </form>
   </view>
-  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="agree" wx:if="{{tp==1}}">完成</button>
-  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="refuse" wx:if="{{tp==1}}">拒绝申请</button>
+  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="agree" wx:if="{{tp==1}}">接受</button>
+  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="submitForm" data-type="refuse" wx:if="{{tp==1}}">拒绝</button>
 </view>

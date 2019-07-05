@@ -7,12 +7,11 @@ Page({
   data: {
     disabled_name: false,
     companyName: '',
-  recordStartTime: '2019-03-01',
-    recordEndTime: '2019-06-01',
+    recordStartTime: '',
+    recordEndTime: '',
     begin: '2000-06-01',
     end: '2100-06-01',
     name:'',
-    isClick_: false,
   },
  
   inputComName: function(e) {
@@ -24,11 +23,19 @@ Page({
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e)
     var _this=this;
+    
     //转为unix时间
     // var authST = util.formatToDate(this.data.authStartTime) / 1000 + 14400;
     // var authET = util.formatToDate(this.data.authEndTime) / 1000 + 14400;
     var recordST = util.formatToDate(this.data.recordStartTime) / 1000 + 14400;
     var recordET = util.formatToDate(this.data.recordEndTime) / 1000 + 14400;
+    if(recordST>recordET){
+      wx.showToast({
+        title: '时间错误',
+        icon:'none',
+      })
+      return;
+    }
     var date = new Date();
     date = util.formatToDate(date) / 1000 + 14400;
     wx.request({
@@ -54,16 +61,10 @@ Page({
             url: '../table/table',
           });
         }
-        else if (e.statusCode == 405) {
-          wx.showToast({
-            title: '没有权限查询用户',
-            icon:'none',
-          })
-        }
         else{
           wx.showToast({
-            title: '查询的公司不存在',
-            icon: 'none',
+            title: e.data,
+            icon:'none',
           })
         }
       },
@@ -72,10 +73,6 @@ Page({
           title: '发送失败',
           icon:'none',
         })
-        console.log(e);
-        _this.setData({
-          isClick_: true,
-        });
       }
     })
     
@@ -94,4 +91,10 @@ Page({
     }
   },
 
+  onReady: function () {
+    this.setData({
+      recordStartTime: util.formatTime(new Date(), "yyyy-MM-dd"),
+      recordEndTime: util.formatTime(new Date(), "yyyy-MM-dd"),
+    });
+  }
 })

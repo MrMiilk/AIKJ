@@ -147,3 +147,7 @@ radio{
 .col-1 {-webkit-box-flex:1;box-flex:1;}
 .fl { float: left;}
 .fr { float: right;}
+.view-login {
+  background-color: #ffffff;
+  border-top:1px solid #dbdbdb;
+}
