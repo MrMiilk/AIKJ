@@ -34,16 +34,16 @@
     <view class="tab-item border-bottom"  hover-class="tab-item-hover"catchtap="goApply">
         <view class="icon_style">
             <image src="../../images/manage.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">申请</text>
+            <text class="tab-text">申请查询</text>
         </view>
         <text class="tab-text" wx:if="{{hasLogin}}">{{numApply}}</text>
         <text class="tab-text" wx:else></text>
     </view>
 
-    <view class="tab-item" hover-class="tab-item-hover" catchtap="applyInitiate" data-statu="open">
+    <view class="tab-item" hover-class="tab-item-hover" catchtap="goAuth" data-statu="open">
         <view class="icon_style">
             <image src="../../images/coin.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">授权</text>
+            <text class="tab-text">授权查询</text>
         </view>
         <text class="tab-text" wx:if="{{hasLogin}}">{{numAutho}}</text>
         <text class="tab-text" wx:else></text>
@@ -52,7 +52,7 @@
     <view class="tab-item border-bottom"  hover-class="tab-item-hover" catchtap="toComReg">
         <view class="icon_style">
             <image src="../../images/my.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">注册</text>
+            <text class="tab-text">注册账本</text>
         </view>
     </view>
 </view>

@@ -1,38 +1,39 @@
-<!--pages/resign_company.wxml-->
+<!-- pages/resign_company.wxml -->
 <view class="container">
   <view class="page-body">
     <form catchsubmit="formSubmit" catchreset="formReset">
       <!-- 名称 -->
       <view class="page-section">
         <view class="page-section-title">公司名称</view>
-            <view class="weui-cell__bd">
-              <input  class="weui-input" bindinput='bindNameInput' name="name" value="{{name}}" placeholder="" />
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput='bindNameInput' name="name" value="{{name}}" placeholder="" />
         </view>
       </view>
       <!-- 联系方式 -->
       <view class="page-section">
-      <view class="page-section-title">联系方式</view>
-            <view class="weui-cell__bd">
-              <input class="weui-input" type='number' bindinput='bindPhoneInput'  name="contract_content" placeholder="手机号码"  value="{{phone}}"/>
-            </view>
+        <view class="page-section-title">联系方式</view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type='number' bindinput='bindPhoneInput' name="contract_content" placeholder="手机号码" value="{{phone}}" />
+        </view>
       </view>
-      <!--验证码-->
+      <!-- 验证码 -->
       <view class="page-section">
-      <view class="page-section-title">验证码</view>
-            <view class="weui-cell__bd">
-              <input class="weui-input_min" bindinput='bindCodeInput' value="{{code}}" name="contract_content" placeholder="" />
-              <button class="codeBtn" bindtap='getCode' hidden='{{hidden}}' disabled='{{btnDisabled}}' >{{btnValue}}</button>
-
-            </view>
+        <view class="page-section-title">验证码</view>
+        <view class="weui-cell__bd">
+          <input class="weui-input_min" bindinput='bindCodeInput' value="{{code}}" name="contract_content" placeholder="" />
+          <button class="codeBtn" bindtap='getCode' hidden='{{hidden}}' disabled='{{btnDisabled}}'>
+            {{btnValue}}
+          </button>
+        </view>
       </view>
       <!-- 经营范围 -->
       <view class="page-section">
-      <view class="page-section-title">经营范围</view>
-      <textarea class="message" value="{{currentText}}" placeholder="输入公司经营范围，若有多个，请用空格分开" bindinput='getSellArea'>
-          </textarea>
+        <view class="page-section-title">经营范围</view>
+        <textarea class="message" value="{{currentText}}" placeholder="输入公司经营范围，若有多个，请用空格分开" bindinput='getSellArea'></textarea>
       </view>
     </form>
   </view>
-   <button  class="button-BILL-1" hover-class="button-BILL-1-p"  bindtap="getMessage" formType="submit" >Submit</button>
+  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="getMessage" formType="submit">
+    注册
+  </button>
 </view>
-

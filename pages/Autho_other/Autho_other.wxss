@@ -1,5 +1,5 @@
 @import "../../common/weui.wxss";
-page{
+page {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -41,21 +41,21 @@ page{
   flex: 1;
 }
 
-.navbar{
+.navbar {
   flex: none;
   display: flex;
   background: #fff;
 }
-.navbar .item{
+.navbar .item {
   position: relative;
   flex: auto;
   text-align: center;
   line-height: 80rpx;
 }
-.navbar .item.active{
-  color: #FFCC00;
+.navbar .item.active {
+  color: #ffcc00;
 }
-.navbar .item.active:after{
+.navbar .item.active:after {
   content: "";
   display: block;
   position: absolute;
@@ -63,26 +63,26 @@ page{
   left: 0;
   right: 0;
   height: 4rpx;
-  background: #FFCC00;
+  background: #ffcc00;
 }
-.client_info_deal{
+.client_info_deal {
   background-color: #fff;
-  height: 130rpx; 
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;  
-}
-.client_info_Refuse{
-  background-color:#f7edd4;
-  height: 130rpx; 
+  height: 130rpx;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
 }
-.client_info_undeal{
+.client_info_Refuse {
+  background-color: #f7edd4;
+  height: 130rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.client_info_undeal {
   background-color: #4a64;
   height: 130rpx;
-  width:750rpx; 
+  width: 750rpx;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -90,53 +90,53 @@ page{
 .userinfo-avatar {
   width: 60rpx;
   height: 60rpx;
-  margin-top:5rpx; 
-  padding-left:20rpx;
+  margin-top: 5rpx;
+  padding-left: 20rpx;
 }
-.name{
-line-height:130rpx;
-width:450rpx;
-padding-left:30rpx;
-display:flex;
-justify-content:flex-start;
+.name {
+  line-height: 130rpx;
+  width: 450rpx;
+  padding-left: 30rpx;
+  display: flex;
+  justify-content: flex-start;
 }
-.btn_waitAccept{
+.btn_waitAccept {
   height: 60rpx;
   width: 150rpx;
   border-radius: 25rpx;
-  margin-left:30rpx;
+  margin-left: 30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
   display: flex;
-  background-color:#ddd;
+  background-color: #ddd;
 }
-.btn_waitAccept_hover{
+.btn_waitAccept_hover {
   background-color: #fff;
   height: 60rpx;
   width: 150rpx;
-  border-radius:25rpx;
-  margin-left:30rpx;
+  border-radius: 25rpx;
+  margin-left: 30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
   display: flex;
 }
-.btn_accept{
+.btn_accept {
   height: 60rpx;
   width: 150rpx;
   border-radius: 25rpx;
-  margin-left:30rpx;
+  margin-left: 30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
   display: flex;
 }
-.btn_accept_r{
- height: 60rpx;
+.btn_accept_r {
+  height: 60rpx;
   width: 150rpx;
   border-radius: 25rpx;
-  margin-left:30rpx;
+  margin-left: 30rpx;
   align-items: center;
   vertical-align: center;
   justify-content: center;
@@ -152,7 +152,7 @@ justify-content:flex-start;
 .container {
   padding: 0;
 }
-.Wait_ac{
+.Wait_ac {
   display: flex;
   flex-direction: column-reverse;
 }

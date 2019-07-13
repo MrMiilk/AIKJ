@@ -8,6 +8,9 @@
   <swiper style='height={{clientHeight}}px-80rpx' duration="200" circular="true" easing-function="easeInOutCubic" current-item-id='{{activeTabId}}' bindchange='tabChange'>
     <swiper-item item-id="tabitemProfit">
       <scroll-view class="table" style='height={{clientHeight}}px-80rpx' scroll-y="true">
+        <view class="tr bg-w">
+          <view class="theme">利润表</view>
+        </view>
         <block wx:for="{{profitItems}}">
            <view wx:if="{{index == 0}}">
             <view class="tr bg-w">
@@ -81,68 +84,9 @@
     </swiper-item>
     <swiper-item item-id="tabitemDebit">
       <scroll-view class="table" scroll-x="true" scroll-y="true">
-        <!--block wx:for="{{balanceItems}}">
-          <view wx:if="{{index == 0}}">
-            <view class="tr bg-w">
-              <view class="th">流动资产</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 1}}">
-            <view class="tr bg-w">
-              <view class="th">非流动资产</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 2}}">
-            <view class="tr bg-w">
-              <view class="th">资产合计</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 3}}">
-            <view class="tr bg-w">
-              <view class="th">流动负债</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 4}}">
-            <view class="tr bg-w">
-              <view class="th">非流动负债</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 5}}">
-            <view class="tr bg-w">
-              <view class="th">负债合计</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 6}}">
-            <view class="tr bg-w">
-              <view class="th">所有者权益(或股东权益):</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:for="{{item}}" wx:for-index="text" wx:for-item="i">
-            <view class="tr bg-g" wx:if="{{i % 2 == 0}}">
-              <view class="td">
-                <text class="name">{{text}}</text>
-              </view>
-              <view class="td_">
-                <text class="name">{{balanceView[index][i]}}</text>
-              </view>
-            </view>
-            <view class="tr bg-g1" wx:else>
-              <view class="td">
-                <text class="name">{{text}}</text>
-              </view>
-              <view class="td_">
-                <text class="name">{{balanceView[index][i]}}</text>
-              </view>
-            </view>
-          </view>
-        </block-->
+        <view class="tr bg-w">
+          <view class="theme">资产负债表</view>
+        </view>
         <block wx:for="{{balanceItems}}">
           <view wx:if="{{index == 0}}">
             <view class="tr bg-w">
@@ -216,65 +160,12 @@
     </swiper-item>
     <swiper-item item-id="tabitemCash">
       <scroll-view class="table" scroll-x="true" scroll-y="true">
-        <!--block wx:for="{{cashFlowItems}}">
-          <view wx:if="{{index == 0}}">
-            <view class="tr bg-w">
-              <view class="th">一、经营活动产生的现金流量:</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 1}}">
-            <view class="tr bg-w">
-              <view class="th">二、投资活动产生的现金流量净额:</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 2}}">
-            <view class="tr bg-w">
-              <view class="th">三、筹资活动产生的现金流量</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 3}}">
-            <view class="tr bg-w">
-              <view class="th">四、汇率变动对现金及现金等价物的影响</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 4}}">
-            <view class="tr bg-w">
-              <view class="th">五、现金及现金等价物净增加额</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:elif="{{index == 5}}">
-            <view class="tr bg-w">
-              <view class="th">六、期末现金及现金等价物余额</view>
-              <view class="th_">金额(元)</view>
-            </view>
-          </view>
-          <view wx:for="{{item}}" wx:for-index="text" wx:for-item="i">
-            <view class="tr bg-g" wx:if="{{i % 2 == 0}}">
-              <view class="td">
-                <text class="name">{{text}}</text>
-              </view>
-              <view class="td_">
-                <text class="name">{{cashFlowView[index][i]}}</text>
-              </view>
-            </view>
-            <view class="tr bg-g1" wx:else>
-              <view class="td">
-                <text class="name">{{text}}</text>
-              </view>
-              <view class="td_">
-                <text class="name">{{cashFlowView[index][i]}}</text>
-              </view>
-            </view>
-          </view>
-        </block-->
+        <view class="tr bg-w">
+          <view class="theme">现金流量表</view>
+        </view>
         <block wx:for="{{cashFlowItems}}">
           <view wx:if="{{index == 0}}">
-            <view class="tr bg-w">
+            <view class="title">
               <view class="th">一、经营活动产生的现金流量:</view>
               <view class="th_">金额(元)</view>
             </view>

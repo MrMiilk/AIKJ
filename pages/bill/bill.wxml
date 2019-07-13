@@ -26,6 +26,15 @@
     <swiper-item item-id="tabitemForm">
       <scroll-view scroll-y="true" class="tab-content">
         <view class="Form">
+        <view class="list-BILL-1">
+            <image class="icon-BILL-3" src="../../images/BILL/date.png"></image>
+            <text class="text-BILL-2">日期:</text>
+            <picker class="date-text" mode="date" value="{{date}}" bindchange="onDateChange">
+              <view class="picker">
+              {{date}}
+            </view>
+            </picker>
+          </view>
           <view class="list-BILL-1">
             <image class="icon-BILL-1" src="../../images/BILL/summary.png"></image>
             <text class="text-BILL-1">摘要:</text>
@@ -62,13 +71,7 @@
            
           </view>
 
-          <view class="list-BILL-1">
-            <image class="icon-BILL-3" src="../../images/BILL/date.png"></image>
-            <text class="text-BILL-2">日期:</text>
-            <picker class="date-text" mode="date" value="{{date}}" bindchange="onDateChange">
-              {{date}}
-            </picker>
-          </view>
+          
 
           <!--完成按钮-->
           <button class="button-BILL-1" hover-class="button-BILL-1-p" disabled='{{overed}}'  bindtap="confirmData">完成</button>

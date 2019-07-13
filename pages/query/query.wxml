@@ -1,4 +1,4 @@
-<!--pages/query/query.wxml-->
+<!-- pages/query/query.wxml -->
 <import src="../../template/query_t/query_t.wxml" />
 <view class="container">
   <view class="page-body">
@@ -6,31 +6,30 @@
       <view class="page-section">
         <view class="page-section-title">查询公司</view>
         <view class="weui-cell__bd">
-          <input class="weui-input" name="name" value="{{companyName}}" disabled='{{disabled_name}}' bindinput="inputComName"/>
+          <input class="weui-input" name="name" value="{{companyName}}" disabled='{{disabled_name}}' bindinput="inputComName" />
         </view>
       </view>
-      
       <view class="time_selection">
         <!-- 时间选择器 -->
         <view class="page-section-title">账单日期</view>
         <view class="time-choose">
           <!-- 开始时间 -->
           <picker mode="date" value="{{recordStartTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='recordStartTime'>
-          <view class="newP"><view class="name" > 起 :</view>
-            <view class="picker">
-              {{recordStartTime}}
-            </view></view>
+            <view class="newP">
+              <view class="name">起 :</view>
+              <view class="picker">{{recordStartTime}}</view>
+            </view>
           </picker>
           <!-- 结束时间 -->
           <picker mode="date" value="{{recordEndTime}}" start="{{begin}}" end="{{end}}" bindchange="bindDateChange" id='recordEndTime'>
-          <view class="newP"><view class="name">止 :</view>
-            <view class="picker">
-              {{recordEndTime}}
-            </view></view>
+            <view class="newP">
+              <view class="name">止 :</view>
+              <view class="picker">{{recordEndTime}}</view>
+            </view>
           </picker>
         </view>
       </view>
     </form>
   </view>
-   <button  class="button-BILL-1" hover-class="button-BILL-1-p"  bindtap="formSubmit">完成</button>
+  <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="formSubmit">完成</button>
 </view>

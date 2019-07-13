@@ -1,29 +1,25 @@
 /* pages/query/query.wxss */
 @import "../../common/weui.wxss";
-.container{
+.container {
   display: flex;
   padding: 100rpx 0;
   flex-direction: column;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }
-.button-BILL-1{
-  margin-top:21px;
-background-color:#87a7d6;
-color:white;
-width:500rpx;
-border-radius:50rpx;
-margin-bottom:0rpx;
-
+.button-BILL-1 {
+  margin-top: 21px;
+  background-color: #87a7d6;
+  color: white;
+  width: 500rpx;
+  border-radius: 50rpx;
+  margin-bottom: 0rpx;
 }
-.button-BILL-1-p{
-  margin-top:21px;
-background-color:#6985af;
-color:white;
-width:500rpx;
-border-radius:50rpx;
-margin-bottom:0rpx;
-
+.button-BILL-1-p {
+  margin-top: 21px;
+  background-color: #6985af;
+  color: white;
+  width: 500rpx;
+  border-radius: 50rpx;
+  margin-bottom: 0rpx;
 }
-
-

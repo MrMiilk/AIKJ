@@ -1,41 +1,37 @@
 /** index.js **/
 //获取app实例
 const app = getApp();
-var util=require("../../utils/util");
+var util = require("../../utils/util");
 Page({
   data: {
-    userInfo: {},           // 用户信息
-    hasLogin: wx.getStorageSync('loginFlag')
-      ? true
-      : false,              // 是否登录，根据后台返回的skey判断
-    numApply: 0,            // TODO:未接受申请数量
-    numAutho: 0,            // TODO:未授权授权数量
+    userInfo: {}, // 用户信息
+    hasLogin: wx.getStorageSync("loginFlag") ? true : false, // 是否登录，根据后台返回的skey判断
+    numApply: 0, // TODO:未接受申请数量
+    numAutho: 0, // TODO:未授权授权数量
     showModalStatus: false, // 模态弹窗
-    imageUrl:'../../images/coin.png', //未登录的头像
-    timeIDs: new Array()    // TODO:清除计时器
+    imageUrl: "../../images/coin.png", //未登录的头像
+    timeIDs: new Array() // TODO:清除计时器
   },
-  
+
   // 检查本地 storage 中是否有skey登录态标识
-  checkLoginStatus: function () {
+  checkLoginStatus: function() {
     let that = this;
-    let loginFlag = wx.getStorageSync('loginFlag');
+    let loginFlag = wx.getStorageSync("loginFlag");
     if (loginFlag) {
       // 检查 session_key 是否过期
       wx.checkSession({
         // session_key 有效(未过期)
-        success: function () {
+        success: function() {
           // 获取用户头像/昵称等信息
           that.getUserInfo();
-
         },
         // session_key 已过期
-        fail: function () {
+        fail: function() {
           that.setData({
             hasLogin: false
           });
         }
       });
-
     } else {
       that.setData({
         hasLogin: false
@@ -46,32 +42,31 @@ Page({
   /**
    * 执行登录操作
    */
-  doLogin: function () {
+  doLogin: function() {
     let that = this;
     wx.showLoading({
-      title: '请稍等...',
+      title: "请稍等...",
       mask: true
     });
-    app.doLogin(()=>{
+    app.doLogin(() => {
       that.getUserInfo();
       util.getApplyList(() => {
         that.setData({
-          numApply: wx.getStorageSync('granteeUnautho').length,
+          numApply: wx.getStorageSync("granteeUnautho").length
         });
       });
-      util.getAuthoList(()=>{
+      util.getAuthoList(() => {
         that.setData({
-          numAutho: wx.getStorageSync('grantorUnautho').length,
+          numAutho: wx.getStorageSync("grantorUnautho").length
         });
       });
     });
-    
   },
 
   /**
    * 从 globalData 中获取 userInfo
    */
-  getUserInfo: function () {
+  getUserInfo: function() {
     let that = this;
     let userInfo = app.globalData.userInfo;
     if (userInfo) {
@@ -81,7 +76,7 @@ Page({
       });
       wx.hideLoading();
     } else {
-      console.log('globalData中userInfo为空');
+      console.log("globalData中userInfo为空");
     }
   },
 
@@ -89,116 +84,147 @@ Page({
    * TODO:两个页面跳转
    */
 
-  goApply: function () {
-    let loginFlag = wx.getStorageSync('loginFlag');
-    util.getAuthoList();
-    util.getApplyList();
+  goApply: function() {
+    let loginFlag = wx.getStorageSync("loginFlag");
+    //util.getAuthoList();
     if (loginFlag) {
+      util.getApplyList();
       wx.navigateTo({
-        url: '../apply_list/apply_list',
-      })
-    }
-    else {
+        url: "../apply_list/apply_list",
+        fail: function(e) {
+          console.log(e);
+        }
+      });
+    } else {
       // TODO:弹出登录提示框
       wx.showToast({
-        title: '请先登录',
-        icon:'none',
-        duration:2000
-      })
+        title: "您还未登录，请先登录",
+        icon: "none",
+        duration: 2000
+      });
     }
   },
 
-  onLoad: function () {
+  onLoad: function() {
     this.checkLoginStatus();
   },
-  onShow: function () {
+  onShow: function() {
     let that = this;
     //设置用户登录信息；根据未接受申请和未同意授权，更新
     that.setData({
       userInfo: app.globalData.userInfo,
-      numApply: wx.getStorageSync('granteeUnautho').length,
-      numAutho: wx.getStorageSync('grantorUnautho').length,
+      numApply: wx.getStorageSync("granteeUnautho").length,
+      numAutho: wx.getStorageSync("grantorUnautho").length
     });
   },
 
-  toComReg: function () {
-    wx.navigateTo({
-      url: '../regist_company/regist_company',
-      fail: function(e){
-        console.log(e)
-      }
-    });
+  toComReg: function() {
+    let loginFlag = wx.getStorageSync("loginFlag");
+    //util.getAuthoList();
+    //util.getApplyList();
+    if (loginFlag) {
+      wx.navigateTo({
+        url: "../regist_company/regist_company",
+        fail: function(e) {
+          console.log(e);
+        }
+      });
+    } else {
+      // TODO:弹出登录提示框
+      wx.showToast({
+        title: "您还未登录，请先登录",
+        icon: "none",
+        duration: 2000
+      });
+    }
   },
 
-  applyInitiate: function(){
-     wx.navigateTo({
-       url: '../Autho_other/Autho_other',
-       fail: function (e) {
-         console.log(e);
-       }
-     });
+  goAuth: function() {
+    let loginFlag = wx.getStorageSync("loginFlag");
+    //util.getApplyList();
+    if (loginFlag) {
+      util.getAuthoList();
+      wx.navigateTo({
+        url: "../Autho_other/Autho_other",
+        fail: function(e) {
+          console.log(e);
+        }
+      });
+    } else {
+      // TODO:弹出登录提示框
+      wx.showToast({
+        title: "您还未登录，请先登录",
+        icon: "none",
+        duration: 2000
+      });
+    }
   },
-  
-  powerDrawer: function (e) {
+
+  powerDrawer: function(e) {
     var currentStatu = e.currentTarget.dataset.statu;
-    this.util(currentStatu)
+    this.util(currentStatu);
   },
-  util: function (currentStatu) {
+  util: function(currentStatu) {
     /* 动画部分 */
-    // 第1步：创建动画实例 
+    // 第1步：创建动画实例
     var animation = wx.createAnimation({
-      duration: 200,  //动画时长
+      duration: 200, //动画时长
       timingFunction: "linear", //线性
-      delay: 0  //0则不延迟
+      delay: 0 //0则不延迟
     });
 
     // 第2步：这个动画实例赋给当前的动画实例
     this.animation = animation;
 
     // 第3步：执行第一组动画
-    animation.opacity(0).rotateX(-100).step();
+    animation
+      .opacity(0)
+      .rotateX(-100)
+      .step();
 
     // 第4步：导出动画对象赋给数据对象储存
     this.setData({
       animationData: animation.export()
-    })
+    });
 
     // 第5步：设置定时器到指定时候后，执行第二组动画
-    this.data.timeIDs[0] = setTimeout(function () {
-      // 执行第二组动画
-      animation.opacity(1).rotateX(0).step();
-      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象
-      this.setData({
-        animationData: animation
-      })
+    this.data.timeIDs[0] = setTimeout(
+      function() {
+        // 执行第二组动画
+        animation
+          .opacity(1)
+          .rotateX(0)
+          .step();
+        // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象
+        this.setData({
+          animationData: animation
+        });
 
-      //关闭
-      if (currentStatu == "close") {
-        this.setData(
-          {
-            showModalStatus: false,
-          }
-        );
-      }
-    }.bind(this), 200)
+        //关闭
+        if (currentStatu == "close") {
+          this.setData({
+            showModalStatus: false
+          });
+        }
+      }.bind(this),
+      200
+    );
 
     // 显示
     if (currentStatu == "open") {
-      this.setData(
-        {
-          showModalStatus: true,
-        }
-      );
+      this.setData({
+        showModalStatus: true
+      });
     }
   },
-  onUnload: function () {
+  onUnload: function() {
     for (var i = 0; i < this.data.timeIDs.length; i++) {
       clearTimeout(this.data.timeIDs[i]);
     }
   },
-  onHide: function () {
+  onHide: function() {
     for (var i = 0; i < this.data.timeIDs.length; i++) {
       clearTimeout(this.data.timeIDs[i]);
     }
   }
-})
+});

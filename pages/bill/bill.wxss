@@ -226,7 +226,7 @@ button::after{ border: none; }
 height:70rpx;
 margin:10rpx;
 width:250rpx;
-margin-left:190rpx;
+margin-left:280rpx;
 justify-content:center;
 display:flex;
 

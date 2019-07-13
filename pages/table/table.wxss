@@ -1,8 +1,25 @@
-
+.theme {
+  width: 100%;
+  justify-content: center;
+  background: #a9bedc ;
+  color:black;
+  display: flex;
+  height: 80rpx;
+  align-items: center;
+  border:1rpx solid black;
+}
 .table {
   width:700rpx;
   height: 100%;
   margin: 25rpx 0 25rpx 25rpx;
+}
+.title {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 80rpx;
+  align-items: center;
+  border:1rpx solid black;
 }
 .tr {
   display: flex;
