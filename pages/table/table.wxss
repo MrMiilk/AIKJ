@@ -4,7 +4,7 @@
   background: #a9bedc ;
   color:black;
   display: flex;
-  height: 80rpx;
+  height: 100rpx;
   align-items: center;
   border:1rpx solid black;
 }
@@ -17,7 +17,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 80rpx;
+  height: 100rpx;
   align-items: center;
   border:1rpx solid black;
 }
@@ -66,7 +66,7 @@ border:1rpx solid black;
   background: #E8FFE8;
   color:black;
   display: flex;
-  height: 80rpx;
+  height: 100rpx;
   align-items: center;
   border:1rpx solid black;
 }
@@ -76,7 +76,7 @@ border:1rpx solid black;
   background: #E8FFE8;
   color:black;
   display: flex;
-  height: 80rpx;
+  height: 100rpx;
   align-items: center;
   border:1rpx solid black;
 }

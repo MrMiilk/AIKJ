@@ -9,6 +9,7 @@ Page({
   data: {
     tabitemVoice: {},
     tabitemForm: {},
+    tabitemSign: {},
     activeTabId: null,
 
     /* 语音识别信息 */
@@ -21,8 +22,9 @@ Page({
     credit: "", //贷方科目
     creditAmount: null, //贷方金额
     date: "", //日期
-
-    overed: false //完成按钮是否可按
+    secondCompName: "",
+    thirdCompName: "",
+    sendButtonText: "生成报表"
   },
 
   tabChange(e) {
@@ -97,24 +99,22 @@ Page({
     };
   },
   sendData: function() {
-    let loginFlag = wx.getStorageSync("loginFlag");
-    if (!loginFlag) {
-      wx.showToast({
-        title: "您还未登录，请先登录",
-        icon: "none"
-      });
-      return;
-    }
     var that = this;
+
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
     /* 得到完整识别内容发给语音服务器处理 */
     wx.request({
-      //url: config.voiceUrl,
-      url: "http://192.168.1.10:80/api/analysis/analysis",
+      url: config.voiceUrl,
+      // url: "http://27.152.156.24:80/api/analysis/analysis",
       data: {
         text: this.data.currentText
       },
       method: "POST",
       success: function(res) {
+        wx.hideLoading();
         that.setData({
           summary: res.data.data[0].summary,
           debit: res.data.data[0].debit,
@@ -126,6 +126,11 @@ Page({
       },
       fail: function(res) {
         console.log(res);
+        wx.hideLoading();
+        wx.showToast({
+          title: "记录生成失败，请重试",
+          icon: "none"
+        });
       }
     });
   },
@@ -163,11 +168,41 @@ Page({
       creditAmount: e.detail.value
     });
   },
+  thirdCompanyFunction: function(e) {
+    this.setData({
+      thirdCompName: e.detail.value
+    });
+    console.log(this.data.thirdCompName);
+  },
+  secondCompFunction: function(e) {
+    this.setData({
+      secondCompName: e.detail.value
+    });
+    console.log(this.data.secondCompName);
+  },
   //选择时间
   onDateChange: function(e) {
     this.setData({
       date: e.detail.value
     });
+  },
+
+  // 签名记录
+  signBill: function() {
+    let loginFlag = wx.getStorageSync("loginFlag");
+    var that = this;
+    //util.getApplyList();
+    if (loginFlag) {
+      // util.getSignList();
+      that.setActiveTab("tabitemSign");
+    } else {
+      // TODO:弹出登录提示框
+      wx.showToast({
+        title: "您还未登录，请先登录",
+        icon: "none",
+        duration: 2000
+      });
+    }
   },
 
   //点击完成,将结果发给服务器
@@ -192,13 +227,14 @@ Page({
       return;
     }
 
-    that.setData({
-      overed: true //按钮不可按
-    });
-
     //精确到秒，定位为当天12点
     var unixtime = util.formatToDate(that.data.date) / 1000 + 14400;
-
+    console.log("交易方信息");
+    console.log(that.data.secondCompName);
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
     wx.request({
       url: config.insertUrl,
       data: {
@@ -208,17 +244,22 @@ Page({
         debitAmount: parseFloat(that.data.debitAmount),
         credit: that.data.credit,
         creditAmount: parseFloat(that.data.creditAmount),
-        time: unixtime
+        time: unixtime,
+        secondCompName: that.data.secondCompName,
+        thirdCompName: that.data.thirdCompName
       },
       method: "POST",
       success: function(res) {
+        wx.hideLoading();
         // TODO:应该使用返回的数据进行判断
         if (res.statusCode == 200) {
           wx.showToast({
             title: "记账成功",
             icon: "success",
             duration: 500,
-            success: function() {}
+            success: function() {
+              // util.getSignList(() => {});
+            }
           });
         } else {
           wx.showToast({
@@ -228,16 +269,11 @@ Page({
             success: function() {}
           });
         }
-        that.setData({
-          overed: false
-        });
       },
       fail: function(res) {
         // 网络请求失败
         console.log("失败：" + res);
-        that.setData({
-          overed: false
-        });
+        wx.hideLoading();
       }
     });
   },

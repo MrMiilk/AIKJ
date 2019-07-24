@@ -2,7 +2,6 @@ var util = require("../../utils/util.js");
 var config = require("../../config/config.js");
 Page({
   data: {
-    disabled_name: true,
     companyName: "",
     id: -1,
     authStartTime: "", //授权开始时间
@@ -51,10 +50,20 @@ Page({
     var recordST = util.formatToDate(this.data.recordStartTime) / 1000 + 14400;
     var recordET = util.formatToDate(this.data.recordEndTime) / 1000 + 14400;
     var tag = "disagree";
-    util._getUnAuthoList();
     if (e.target.dataset["type"] == "agree") {
       tag = "agree";
     }
+    var that = this;
+    var t2;
+    if (tag == "agree") {
+      t2 = "授权";
+    } else if (tag == "disagree") {
+      t2 = "拒绝授权";
+    }
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
     wx.request({
       url: config.authorizedUrl,
       method: "POST",
@@ -72,26 +81,24 @@ Page({
         recordId: this.data.recordId
       },
       success: function(e) {
+        wx.hideLoading();
         wx.showToast({
-          title: "成功",
+          title: t2 + "成功",
           icon: "success"
         });
         //读取服务器的授权和未授权信息，并跳转其他页面
-        util._getUnAuthoList();
-        if (tag == "agree") {
-          util._getAuthoList();
-        } else {
-          util._getUnAuthoRefuseList();
-        }
-        setTimeout(function() {
-          wx.navigateBack({
-            delta: 1
-          });
-        }, 500); //设置延时
+        util.getAuthoList(i => {
+          if (i == 2) {
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        });
       },
       fail: function(e) {
+        wx.hideLoading();
         wx.showToast({
-          title: "请求发送失败",
+          title: t2 + "失败",
           icon: "none"
         });
       }

@@ -11,20 +11,10 @@ App({
   /* 监听小程序启动或切前台
      向后台request授权与申请信息，得到数据存入storage */
   onShow: function(options) {
-    util.getAuthoList();
-    util.getApplyList();
-
-    var numApply = wx.getStorageSync("granteeUnautho").length;
-    var numAutho = wx.getStorageSync("grantorUnautho").length;
-    if (numApply <= 0 && numAutho <= 0) {
-      wx.hideTabBarRedDot({
-        index: 2
-      });
-    } else {
-      wx.showTabBarRedDot({
-        index: 2
-      });
-    }
+    var j = 0;
+    util.getApplyList(() => {});
+    util.getAuthoList(() => {});
+    util.getSignList(() => {});
   },
 
   // 检查本地 storage 中是否有登录态标识

@@ -1,0 +1,18 @@
+<!-- pages/SignInfo/SignInfo.wxml -->
+<scroll-view scroll-y="true" class="tab-content">
+    <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/apply_list/author1.png"></image>
+        <text class="text-BILL-1">甲方签名:</text>
+    </view>
+    <view class='signature'>{{firstSig}}</view>
+    <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/apply_list/author.png"></image>
+        <text class="text-BILL-1">乙方签名:</text>
+    </view>
+    <view class='signature'>{{secondSig}}</view>
+    <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/apply_list/application.png"></image>
+        <text class="text-BILL-1">第三方签名:</text>
+    </view>
+    <view class='signature'>{{thirdSig}}</view>
+</scroll-view>

@@ -24,7 +24,7 @@ Page({
   },
   goApply: function() {
     wx.navigateTo({
-      url: "../apply/apply"
+      url: "../apply/apply?new=1"
     });
   },
   tabclick(e) {
@@ -44,7 +44,7 @@ Page({
 
   /* 下拉刷新，获取最新申请列表*/
   onPullDownRefresh: function() {
-    util.getApplyList();
+    util.getApplyList(() => {});
     this.onShow();
   },
 
@@ -60,7 +60,8 @@ Page({
 
   toDetail: function(e) {
     let index = e.currentTarget.id;
-    let url_ = "../authorize/authorize?" + "tp=" + e.target.dataset["tp"];
+    console.log(e);
+    let url_ = "../apply/apply?" + "tp=" + e.target.dataset["tp"];
     if (e.target.dataset["tp"] == "4") {
       url_ =
         url_ +
@@ -103,7 +104,6 @@ Page({
         util.msToDate(this.data.granteeAutho[index].recordEndTime).withoutTime +
         "&type=" +
         this.data.granteeAutho[index].type +
-        this.data.granteeAutho[index].type +
         "&recordId=" +
         this.data.granteeAutho[index].recordId +
         "&t=" +
@@ -128,7 +128,6 @@ Page({
         util.msToDate(this.data.granteeUnauthoRefuse[index].recordEndTime)
           .withoutTime +
         "&type=" +
-        this.data.granteeUnauthoRefuse[index].type +
         this.data.granteeUnauthoRefuse[index].type +
         "&recordId=" +
         this.data.granteeUnauthoRefuse[index].recordId +

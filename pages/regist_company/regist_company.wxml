@@ -29,7 +29,7 @@
       <!-- 经营范围 -->
       <view class="page-section">
         <view class="page-section-title">经营范围</view>
-        <textarea class="message" value="{{currentText}}" placeholder="输入公司经营范围，若有多个，请用空格分开" bindinput='getSellArea'></textarea>
+        <textarea class="message" value="{{currentText}}" placeholder="输入公司经营范围，若有多个，请用逗号分开" bindinput='getSellArea'></textarea>
       </view>
     </form>
   </view>

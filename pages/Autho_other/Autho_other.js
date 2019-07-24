@@ -40,7 +40,7 @@ Page({
 
   /* 下拉刷新，自动监听 */
   onPullDownRefresh: function() {
-    util.getAuthoList();
+    util.getAuthoList(() => {});
     this.onShow();
   },
 

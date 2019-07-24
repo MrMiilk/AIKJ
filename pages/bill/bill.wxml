@@ -1,84 +1,79 @@
 <view class='container-BILL'>
   <view class='tabbar-BILL'>
-    <text id="tabitemVoice" class='tabitem {{activeTabId=="tabitemVoice"?"tabitem-active":""}}' bindtap='tabclick'>语音</text>
-    <text id="tabitemForm" class='tabitem {{activeTabId=="tabitemForm"?"tabitem-active":""}}' bindtap='tabclick'>表单</text>
-    <view class='tabindicator' animation="{{indicatorAnim}}"></view>
+    <text id="tabitemVoice" class='tabitem {{activeTabId=="tabitemVoice"?"tabitem-active":""}}' bindtap='tabclick'>
+      语音
+    </text>
+    <text id="tabitemForm" class='tabitem {{activeTabId=="tabitemForm"?"tabitem-active":""}}' bindtap='tabclick'>
+      记录
+    </text>
+    <!-- <view class='tabindicator' animation="{{indicatorAnim}}"></view> -->
   </view>
-
   <swiper class='scrollview-content' duration="200" circular="true" easing-function="easeInOutCubic" current-item-id='{{activeTabId}}' bindchange='tabChange'>
     <swiper-item item-id="tabitemVoice">
       <scroll-view class="tab-content">
         <view class="section-body">
-          <textarea class="message"  value="{{currentText}}" placeholder="语音或手动输入，完成后点击下方图标跳转" bindinput="vtextAreaBlur">
-          </textarea>
+          <textarea class="message" value="{{currentText}}" placeholder="语音或手动输入摘要" bindinput="vtextAreaBlur"></textarea>
         </view>
-        <view class="send-SR">
-          <image class="icon-SR-1" src="../../images/BILL/Send.png"  bindtap="sendData"></image>
-        </view>
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="sendData">生成记录</button>
         <view class="view-SR-1">
           <view class="view-SR-2" catchtouchstart="streamRecord" catchtouchend="streamRecordEnd">
             <image class="icon-SR-2" src="../../images/BILL/microphone.png"></image>
           </view>
-          <text class="text-SR-2" >按住说话</text>
+          <text class="text-SR-2">按住说话</text>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item item-id="tabitemForm">
       <scroll-view scroll-y="true" class="tab-content">
         <view class="Form">
-        <view class="list-BILL-1">
+          <view class="list-BILL-1">
             <image class="icon-BILL-3" src="../../images/BILL/date.png"></image>
             <text class="text-BILL-2">日期:</text>
             <picker class="date-text" mode="date" value="{{date}}" bindchange="onDateChange">
-              <view class="picker">
-              {{date}}
-            </view>
+              <view class="picker">{{date}}</view>
             </picker>
           </view>
           <view class="list-BILL-1">
             <image class="icon-BILL-1" src="../../images/BILL/summary.png"></image>
             <text class="text-BILL-1">摘要:</text>
-            <input class="weui-input_BILL_1" bindinput="summaryFunction" placeholder="摘要输入  " value="{{summary}}"/>
+            <input class="weui-input_BILL_1" bindinput="summaryFunction" placeholder="请输入摘要  " value="{{summary}}" />
           </view>
-
           <view class="list-BILL-1">
             <image class="icon-BILL-1" src="../../images/BILL/borrow.png"></image>
             <text class="text-BILL-1">借方科目:</text>
-            <input class="weui-input_BILL_2" bindinput="debitFunction" value="{{debit}}"/>
+            <input class="weui-input_BILL_2" bindinput="debitFunction" value="{{debit}}" />
           </view>
-
-
           <view class="list-BILL-1">
-              <image class="icon-BILL-2" 
-              src="../../images/BILL/YUAN.png"></image>
-              <text class="text-BILL-1">借方金额(元):</text>
-            <input class="weui-input_BILL_3" type="digit" placeholder="" value="{{debitAmount}}" bindinput = "debitAmFunction"/>
+            <image class="icon-BILL-2" src="../../images/BILL/YUAN.png"></image>
+            <text class="text-BILL-1">借方金额(元):</text>
+            <input class="weui-input_BILL_3" type="digit" placeholder="" value="{{debitAmount}}" bindinput="debitAmFunction" />
           </view>
-
-
           <view class="list-BILL-1">
             <image class="icon-BILL-1" src="../../images/BILL/loan.png"></image>
             <text class="text-BILL-1">贷方科目:</text>
-            <input class="weui-input_BILL_2" bindinput="creditFunction" value="{{credit}}"/>
+            <input class="weui-input_BILL_2" bindinput="creditFunction" value="{{credit}}" />
           </view>
-
           <view class="list-BILL-1">
-              <image class="icon-BILL-2" 
-              src="../../images/BILL/YUAN.png"></image>
-              <text class="text-BILL-1">贷方金额(元):</text>
-           
-            <input class="weui-input_BILL_3" type="digit" placeholder="" value="{{creditAmount}}" bindinput = "creditAmFunction"/>
-           
+            <image class="icon-BILL-2" src="../../images/BILL/YUAN.png"></image>
+            <text class="text-BILL-1">贷方金额(元):</text>
+            <input class="weui-input_BILL_3" type="digit" placeholder="" value="{{creditAmount}}" bindinput="creditAmFunction" />
           </view>
-
-          
-
-          <!--完成按钮-->
-          <button class="button-BILL-1" hover-class="button-BILL-1-p" disabled='{{overed}}'  bindtap="confirmData">完成</button>
+          <view class="list-BILL-1">
+            <image class="icon-BILL-1" src="../../images/apply_list/author.png"></image>
+            <text class="text-BILL-1">乙方</text>
+            <input class="weui-input_BILL_2" bindinput="secondCompFunction" placeholder="请输入乙方  " value="{{secondCompName}}" />
+          </view>
+          <view class="list-BILL-1">
+            <image class="icon-BILL-1" src="../../images/apply_list/application.png"></image>
+            <text class="text-BILL-1">第三方</text>
+            <input class="weui-input_BILL_2" bindinput="thirdCompanyFunction" placeholder="请输入第三方  " value="{{thirdCompName}}" />
+          </view>
+          <!-- 签名按钮 -->
         </view>
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="confirmData">
+          提交记录
+        </button>
       </scroll-view>
     </swiper-item>
   </swiper>
 </view>
-
-

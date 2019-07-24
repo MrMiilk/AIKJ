@@ -174,7 +174,8 @@ Page({
   },
   onLoad: function() {
     wx.showLoading({
-      title: "报表生成中.."
+      title: "请稍后...",
+      mask: true
     });
     this.setData({
       profitData: wx.getStorageSync("table").profit,

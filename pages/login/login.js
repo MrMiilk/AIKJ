@@ -8,6 +8,7 @@ Page({
     hasLogin: wx.getStorageSync("loginFlag") ? true : false, // 是否登录，根据后台返回的skey判断
     numApply: 0, // TODO:未接受申请数量
     numAutho: 0, // TODO:未授权授权数量
+    numSign: 0,
     showModalStatus: false, // 模态弹窗
     imageUrl: "../../images/coin.png", //未登录的头像
     timeIDs: new Array() // TODO:清除计时器
@@ -27,6 +28,10 @@ Page({
         },
         // session_key 已过期
         fail: function() {
+          wx.showToast({
+            title: "登录已过期，请重新登录",
+            icon: "none"
+          });
           that.setData({
             hasLogin: false
           });
@@ -45,20 +50,32 @@ Page({
   doLogin: function() {
     let that = this;
     wx.showLoading({
-      title: "请稍等...",
+      title: "请稍后...",
       mask: true
     });
     app.doLogin(() => {
+      wx.hideLoading();
       that.getUserInfo();
-      util.getApplyList(() => {
-        that.setData({
-          numApply: wx.getStorageSync("granteeUnautho").length
-        });
+      util.getApplyList(i => {
+        if (i == 2) {
+          that.setData({
+            numApply: wx.getStorageSync("granteeUnautho").length
+          });
+        }
       });
-      util.getAuthoList(() => {
-        that.setData({
-          numAutho: wx.getStorageSync("grantorUnautho").length
-        });
+      util.getAuthoList(i => {
+        if (i == 2) {
+          that.setData({
+            numAutho: wx.getStorageSync("grantorUnautho").length
+          });
+        }
+      });
+      util.getSignList(i => {
+        if (i == 2) {
+          that.setData({
+            numSign: wx.getStorageSync("unsigned").length
+          });
+        }
       });
     });
   },
@@ -74,7 +91,6 @@ Page({
         hasLogin: true,
         userInfo: userInfo
       });
-      wx.hideLoading();
     } else {
       console.log("globalData中userInfo为空");
     }
@@ -85,14 +101,23 @@ Page({
    */
 
   goApply: function() {
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 500);
     let loginFlag = wx.getStorageSync("loginFlag");
-    //util.getAuthoList();
     if (loginFlag) {
-      util.getApplyList();
-      wx.navigateTo({
-        url: "../apply_list/apply_list",
-        fail: function(e) {
-          console.log(e);
+      util.getApplyList(i => {
+        if (i == 2) {
+          wx.navigateTo({
+            url: "../apply_list/apply_list",
+            fail: function(e) {
+              console.log(e);
+            }
+          });
         }
       });
     } else {
@@ -114,14 +139,13 @@ Page({
     that.setData({
       userInfo: app.globalData.userInfo,
       numApply: wx.getStorageSync("granteeUnautho").length,
-      numAutho: wx.getStorageSync("grantorUnautho").length
+      numAutho: wx.getStorageSync("grantorUnautho").length,
+      numSign: wx.getStorageSync("unsigned").length
     });
   },
 
   toComReg: function() {
     let loginFlag = wx.getStorageSync("loginFlag");
-    //util.getAuthoList();
-    //util.getApplyList();
     if (loginFlag) {
       wx.navigateTo({
         url: "../regist_company/regist_company",
@@ -140,14 +164,53 @@ Page({
   },
 
   goAuth: function() {
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 500);
     let loginFlag = wx.getStorageSync("loginFlag");
-    //util.getApplyList();
     if (loginFlag) {
-      util.getAuthoList();
-      wx.navigateTo({
-        url: "../Autho_other/Autho_other",
-        fail: function(e) {
-          console.log(e);
+      util.getAuthoList(i => {
+        if (i == 2) {
+          wx.navigateTo({
+            url: "../Autho_other/Autho_other",
+            fail: function(e) {
+              console.log(e);
+            }
+          });
+        }
+      });
+    } else {
+      // TODO:弹出登录提示框
+      wx.showToast({
+        title: "您还未登录，请先登录",
+        icon: "none",
+        duration: 2000
+      });
+    }
+  },
+
+  goSign: function() {
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 500);
+    let loginFlag = wx.getStorageSync("loginFlag");
+    if (loginFlag) {
+      util.getSignList(i => {
+        if (i == 2) {
+          wx.navigateTo({
+            url: "../Sign/Sign",
+            fail: function(e) {
+              console.log(e);
+            }
+          });
         }
       });
     } else {

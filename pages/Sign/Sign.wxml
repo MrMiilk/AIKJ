@@ -1,0 +1,48 @@
+<scroll-view scroll-y="true" class="tab-content recharge-list">
+  <view class="container">
+    <view class="Wait_ac">
+      <view wx:for="{{unsigned}}">
+        <view class="client_info_deal" bindtap='toDetail' id="{{index}}" data-tp="7">
+          <image src="../../images/apply_list/author1.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='First'}}"></image>
+          <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='Second'}}"></image>
+          <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='Third'}}"></image>
+          <view class="name" data-tp="8" wx:if="{{item.party=='First'}}">您是该记录甲方</view>
+          <view class="name" data-tp="7" wx:if="{{item.party=='Second'}}">您是该记录乙方</view>
+          <view class="name" data-tp="7" wx:if="{{item.party=='Third'}}">您是该记录第三方</view>
+          <view class="btn_waitAccept" hover="true" hover-class="btn_waitAccept_hover" data-tp="7">
+            待签名
+          </view>
+        </view>
+        <view class="width-line" />
+      </view>
+    </view>
+    <view class="Wait_ac">
+      <view wx:for="{{signed}}">
+        <view class="client_info_undeal" bindtap='toDetail' id="{{index}}" data-tp="8">
+          <image src="../../images/apply_list/author1.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='First'}}"></image>
+          <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='Second'}}"></image>
+          <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='Third'}}"></image>
+          <view class="name" data-tp="8" wx:if="{{item.party=='First'}}">您是该记录甲方</view>
+          <view class="name" data-tp="8" wx:if="{{item.party=='Second'}}">您是该记录乙方</view>
+          <view class="name" data-tp="8" wx:if="{{item.party=='Third'}}">您是该记录第三方</view>
+          <view class="btn_accept" data-tp="8">已签名</view>
+        </view>
+        <view class="width-line" />
+      </view>
+    </view>
+    <view class="Wait_ac">
+      <view wx:for="{{signedRefuse}}">
+        <view class="client_info_Refuse" bindtap='toDetail' id="{{index}}" data-tp="9">
+          <image src="../../images/apply_list/author1.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='First'}}"></image>
+          <image src="../../images/apply_list/author.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='Second'}}"></image>
+          <image src="../../images/apply_list/application.png" class="userinfo-avatar" background-size="cover" data-tp="7" wx:if="{{item.party=='Third'}}"></image>
+          <view class="name" data-tp="8" wx:if="{{item.party=='First'}}">您是该记录甲方</view>
+          <view class="name" data-tp="9" wx:if="{{item.party=='Second'}}">您是该记录乙方</view>
+          <view class="name" data-tp="9" wx:if="{{item.party=='Third'}}">您是该记录第三方</view>
+          <view class="btn_accept_r" data-tp="9">已拒签</view>
+        </view>
+        <view class="width-line" />
+      </view>
+    </view>
+  </view>
+</scroll-view>

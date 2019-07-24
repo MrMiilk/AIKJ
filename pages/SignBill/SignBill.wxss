@@ -79,7 +79,6 @@ page {
 
 .tabitem {
   /* width: 160rpx; */
-  margin-bottom: 50rpx;
   text-align: center;
   color: #e0e0e0;
   font-weight: 400;
@@ -208,13 +207,15 @@ page {
   margin-right: 36rpx;
 }
 .button-BILL-1 {
-  margin: 10px auto;
+  height: 100rpx;
+  width: 240rpx;
+  margin: 10rpx auto;
   background-color: #71a16d;
   color: white;
   align-self: center;
 }
 .button-BILL-1-p {
-  margin: 10px auto;
+  margin: 10rpx auto;
   background-color: #537750;
   color: white;
   align-self: center;
@@ -229,4 +230,13 @@ button::after {
   margin-left: 280rpx;
   justify-content: center;
   display: flex;
+}
+.list-BILL-1_p {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 2rpx solid #ddd;
+  background-color: #8ba693;
 }

@@ -4,7 +4,6 @@ var util = require("../../utils/util.js");
 
 Page({
   data: {
-    disabled_name: false,
     companyName: "",
     recordStartTime: "",
     recordEndTime: "",
@@ -21,7 +20,7 @@ Page({
   },
   formSubmit: function(e) {
     let loginFlag = wx.getStorageSync("loginFlag");
-    if (!loginFlag){
+    if (!loginFlag) {
       wx.showToast({
         title: "您还未登录，请先登录",
         icon: "none"
@@ -29,7 +28,7 @@ Page({
       return;
     }
     console.log("form发生了submit事件，携带数据为：", e);
-    var _this = this;
+    var that = this;
 
     //转为unix时间
     // var authST = util.formatToDate(this.data.authStartTime) / 1000 + 14400;
@@ -45,6 +44,10 @@ Page({
     }
     var date = new Date();
     date = util.formatToDate(date) / 1000 + 14400;
+    wx.showLoading({
+      title: "请稍后...",
+      mask: true
+    });
     wx.request({
       url: api.queryUrl,
       //url: 'http://127.0.0.1:80',
@@ -59,6 +62,7 @@ Page({
       },
       method: "POST",
       success: function(e) {
+        wx.hideLoading();
         if (e.statusCode == 200) {
           wx.setStorageSync("table", e.data);
           wx.navigateTo({
@@ -72,8 +76,9 @@ Page({
         }
       },
       fail: function(e) {
+        wx.hideLoading();
         wx.showToast({
-          title: "发送失败",
+          title: "查询失败",
           icon: "none"
         });
       }

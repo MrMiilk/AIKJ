@@ -8,7 +8,10 @@
     "pages/authorize/authorize",
     "pages/apply/apply",
     "pages/Autho_other/Autho_other",
-    "pages/table/table"
+    "pages/table/table",
+    "pages/Sign/Sign",
+    "pages/SignBill/SignBill",
+    "pages/SignInfo/SignInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

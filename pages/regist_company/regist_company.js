@@ -115,6 +115,10 @@ Page({
   getMessage: function() {
     var that = this;
     if (this.data.code == "1234") {
+      wx.showLoading({
+        title: "请稍后...",
+        mask: true
+      });
       wx.request({
         url: config.registUrl,
         data: {
@@ -127,6 +131,7 @@ Page({
         method: "POST",
         //如果公司已注册，提醒用户改公司名
         success: function(res) {
+          wx.hideLoading();
           if (res.statusCode == 200) {
             wx.showToast({
               title: "注册成功",
@@ -144,15 +149,15 @@ Page({
           }
         },
         fail: function(res) {
+          wx.hideLoading();
           wx.showToast({
-            title: "请检查网络状态",
+            title: "注册失败",
             icon: "none"
           });
         }
       });
       console.log(this.data);
     } else {
-      console.log(res);
       wx.showToast({
         title: "验证码或手机号错误",
         icon: "none"

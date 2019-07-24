@@ -1,0 +1,66 @@
+<view class='container-BILL'>
+  <scroll-view scroll-y="true" class="tab-content">
+    <view class='list-BILL-1_p'>
+      <text class='tabitem'>记录</text>
+    </view>
+    <view class="Form">
+      <view class="list-BILL-1">
+        <image class="icon-BILL-3" src="../../images/BILL/date.png"></image>
+        <text class="text-BILL-2">日期:</text>
+        <view class="picker">{{date}}</view>
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/BILL/summary.png"></image>
+        <text class="text-BILL-1">摘要:</text>
+        <input class="weui-input_BILL_1" bindinput="summaryFunction" value="{{summary}}" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/BILL/borrow.png"></image>
+        <text class="text-BILL-1">借方科目:</text>
+        <input class="weui-input_BILL_2" bindinput="debitFunction" value="{{debit}}" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-2" src="../../images/BILL/YUAN.png"></image>
+        <text class="text-BILL-1">借方金额(元):</text>
+        <input class="weui-input_BILL_3" type="digit" bindinput="debitAmFunction" value="{{debitAmount}}" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/BILL/loan.png"></image>
+        <text class="text-BILL-1">贷方科目:</text>
+        <input class="weui-input_BILL_2" bindinput="creditFunction" value="{{credit}}" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-2" src="../../images/BILL/YUAN.png"></image>
+        <text class="text-BILL-1">贷方金额(元):</text>
+        <input class="weui-input_BILL_3" type="digit" value="{{creditAmount}}" bindinput="creditAmFunction" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/apply_list/author1.png"></image>
+        <text class="text-BILL-1">甲方</text>
+        <input class="weui-input_BILL_2" bindinput="firstCompFunction" value="{{firstCompName}}" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/apply_list/author.png"></image>
+        <text class="text-BILL-1">乙方</text>
+        <input class="weui-input_BILL_2" bindinput="secondCompFunction" value="{{secondCompName}}" disabled="{{true}}" />
+      </view>
+      <view class="list-BILL-1">
+        <image class="icon-BILL-1" src="../../images/apply_list/application.png"></image>
+        <text class="text-BILL-1">第三方</text>
+        <input class="weui-input_BILL_2" bindinput="thirdCompanyFunction" value="{{thirdCompName}}" disabled="{{true}}" />
+      </view>
+      <!-- 完成按钮 -->
+      <view>
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap='goSignInfo'>
+          查看签名
+        </button>
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="goSignBill" data-type="agree" wx:if="{{isClick}}">
+          签名
+        </button>
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="goSignBill" data-type="refuse" wx:if="{{isClick}}">
+          拒签
+        </button>
+      </view>
+    </view>
+  </scroll-view>
+</view>
