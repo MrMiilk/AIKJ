@@ -58,7 +58,7 @@ Page({
   //tp是决定是拒绝同意的标志
   toDetail: function(e) {
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     setTimeout(() => {

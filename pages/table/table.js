@@ -174,7 +174,7 @@ Page({
   },
   onLoad: function() {
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     this.setData({

@@ -4,6 +4,7 @@
   <view class="page-body">
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="page-section">
+        <image class="icon-BILL-2" src="../../images/apply_list/author.png"></image>
         <view class="page-section-title">申请人</view>
         <view class="weui-cell__bd">
           <input class="weui-input" name="name" value="{{companyName}}" disabled='{{true}}' />
@@ -13,6 +14,7 @@
       <!-- 时间范围 -->
       <view class="time_selection">
         <!-- 时间选择器 -->
+        <image class="icon-BILL-2" src="../../images/date.png"></image>
         <view class="page-section-title">查询有效期</view>
         <view class="time-choose">
           <!-- 开始时间 -->
@@ -28,6 +30,7 @@
         </view>
       </view>
       <view class="time_selection">
+        <image class="icon-BILL-2" src="../../images/date.png"></image>
         <view class="page-section-title">账本日期</view>
         <view class="time-choose">
           <!-- 开始时间 -->
@@ -40,6 +43,20 @@
             <view class="name">止</view>
             <view class="picker">{{recordEndTime}}</view>
           </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <image class="icon-BILL-2" src="../../images/comp.png"></image>
+        <view class="page-section-title">查看附件</view>
+        <view class="weui-cell__bd">
+          <radio-group class="group" bindchange="radioChange">
+            <view class="label-2" wx:for="{{radioItems}}">
+              <radio id="{{item.name}}" value="{{item.name}}" checked="{{item.checked}}" disabled='true'></radio>
+              <label class="label-2-text" for="{{item.name}}">
+                <text>{{item.name}}</text>
+              </label>
+            </view>
+          </radio-group>
         </view>
       </view>
     </form>

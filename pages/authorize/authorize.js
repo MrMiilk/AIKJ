@@ -12,13 +12,36 @@ Page({
     end: "2100-06-01",
     type: [],
     recordId: "",
-    tp: ""
+    tp: "",
+    radioItems: [
+      {
+        name: "是",
+        checked: 0
+      },
+      {
+        name: "否",
+        checked: 0
+      }
+    ]
   },
   // TODO:
   formSubmit: function(e) {
     console.log("form发生了submit事件，携带数据为：", e);
   },
-
+  // radioChange(e) {
+  //   const checked = e.detail.value
+  //   const changed = {}
+  //   for (let i = 0; i < this.data.radioItems.length; i++) {
+  //     if (checked.indexOf(this.data.radioItems[i].name) !== -1) {
+  //       changed['radioItems[' + i + '].checked'] = 1;
+  //     } else {
+  //       changed['radioItems[' + i + '].checked'] = 0;
+  //     }
+  //   }
+  //   this.setData(changed)
+  //   console.log(this.data.radioItems);
+  //   console.log(typeof(this.data.radioItems[1].checked));
+  // },
   bindDateChange: function(e) {
     if (e.target.id == "authStartTime") {
       console.log("授权开始时间");
@@ -60,8 +83,13 @@ Page({
     } else if (tag == "disagree") {
       t2 = "拒绝授权";
     }
+    if (this.data.radioItems[0].checked)
+      var attachment = this.data.radioItems[0].checked;
+    else {
+      attachment = 0;
+    }
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     wx.request({
@@ -78,7 +106,8 @@ Page({
         recordStartTime: recordST,
         recordEndTime: recordET,
         tag: tag,
-        recordId: this.data.recordId
+        recordId: this.data.recordId,
+        attachment: attachment
       },
       success: function(e) {
         wx.hideLoading();
@@ -120,17 +149,28 @@ Page({
   },
 
   // 加载url中的参数,同时完成unix转普通时间
-  onLoad: function(options) {
+  onLoad: function(option) {
+    const changed = {};
+    var options = wx.getStorageSync("infoQuery");
+    if (options.attachment == 0) {
+      changed["radioItems[" + 1 + "].checked"] = 1;
+      changed["radioItems[" + 0 + "].checked"] = 0;
+    } else {
+      changed["radioItems[" + 1 + "].checked"] = 0;
+      changed["radioItems[" + 0 + "].checked"] = 1;
+    }
+    console.log(options.attachment);
     this.setData({
-      companyName: options.companyName,
+      companyName: options.user,
+      authStartTime: util.msToDate(options.authStartTime).withoutTime,
+      authEndTime: util.msToDate(options.authEndTime).withoutTime,
+      recordStartTime: util.msToDate(options.recordStartTime).withoutTime,
+      recordEndTime: util.msToDate(options.recordEndTime).withoutTime,
       id: options.id,
-      authStartTime: options.authStartTime,
-      authEndTime: options.authEndTime,
-      recordStartTime: options.recordStartTime,
-      recordEndTime: options.recordEndTime,
       type: options.type,
       recordId: options.recordId,
-      tp: options.t //记录的是申请或授权状态
+      tp: option.tp //记录的是申请或授权状态
     });
+    this.setData(changed);
   }
 });

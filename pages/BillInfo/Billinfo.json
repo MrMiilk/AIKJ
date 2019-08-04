@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "流水账记录",
+    "navigationBarBackgroundColor": "#ffffff",
+    "usingComponents": {},
+    "enablePullDownRefresh": true
+}

@@ -10,6 +10,19 @@ page {
 icon {
   vertical-align: middle;
 }
+.list-BILL-1 {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #ddd;
+}
+.list-BILL-1-p {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #ddd;
+  background-color:#fff; 
+}
 .weui-cells {
   position: relative;
   margin-top: 1.17647059em;
@@ -93,7 +106,7 @@ icon {
     width:450rpx;
     border: 1px solid #FFFFFF;
     background-color: white; 
-    margin-left: 20rpx;
+    margin-left: 70rpx;
     display: flex;
     box-shadow: 0 2px 16px 2px rgba(0,0,0,0.03);
 }
@@ -1060,17 +1073,27 @@ icon {
   width:500rpx;
 }
 .button-BILL-1{
-  margin:150rpx;
+  margin-top:50rpx;
   background-color: #fac589;
   color: white;
   width:500rpx;
   border-radius: 30rpx;
 }
 .button-BILL-1-p{
-  margin:150rpx;
+ margin-top:50rpx;
   background-color: #f1b46d;
   color: white;
   width:500rpx
+}
+.icon-BILL-2 {
+  width: 39rpx;
+  height: 39rpx;
+  margin: 0rpx 15rpx 0 10rpx;
+  align-self:center;
+
+}
+button::after {
+  border: none;
 }
 .container {
   padding: 100rpx 0;
@@ -1078,8 +1101,9 @@ icon {
 
 label {
   display: inline-block;
-  min-width: 270rpx;
-  margin-right: 20rpx;
+min-width: 100rpx;
+margin-right: 20rpx;
+
 }
 form{
   width: 100%;
@@ -1097,6 +1121,7 @@ margin-left:20rpx;
 justify-content:center;
 display:flex;
 border-bottom:0.5px dashed #aad08f;
+box-shadow: 0 2px 16px 2px rgba(0, 0, 0, 0.03);
 }
 .page-section-title{
   position: relative;
@@ -1107,10 +1132,12 @@ border-bottom:0.5px dashed #aad08f;
   text-align:center;
 }
 .time_selection{
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx;
   display: flex;
   flex-wrap:nowrap;
   flex-direction: row;
+  background-color:#fff;
+
 }
 .time-choose {
 display:flex;
@@ -1119,11 +1146,12 @@ margin-left:120rpx;
 
 }
 .page-section{
-  margin-bottom: 40rpx;
-  display: flex;
-  flex-wrap:nowrap;
-  position: relative;
-
+margin-bottom:20rpx;
+display:flex;
+flex-wrap:nowrap;
+position:relative;
+align-items:center;
+background-color:#fff;
 }
 .btn-area{
 width:50%;
@@ -1223,7 +1251,10 @@ display:flex;
 flex-direction:column;
 width:100%;
 height:100%;
-margin-left: 50rpx;
+}
+.line{
+display: flex;
+border-bottom:1rpx solid #e3e3e3;
 }
 .text_icon{
 position:relative;
@@ -1238,7 +1269,13 @@ font-size:28rpx;
 .newP{
   display:flex;
   flex-direction:row;
-
+}
+.container-BILL {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 .name{
   text-align:center;

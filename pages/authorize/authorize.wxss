@@ -7,6 +7,14 @@
   justify-content: center;
   align-items: center;
 }
+.label-2{
+  display: flex;
+}
+.group{
+ justify-content: space-around;
+ display: flex;
+ align-items:center;
+}
 .button-BILL-1 {
   margin-top: 21px;
   background-color: #87a7d6;

@@ -10,10 +10,10 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.6",
+	"libVersion": "2.7.7",
 	"isGameTourist": false,
 	"appid": "wxfd0c5da1cf269079",
-	"projectname": "test2",
+	"projectname": "wxapp",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

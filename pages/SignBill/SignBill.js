@@ -27,7 +27,8 @@ Page({
     thirdSig: "",
     firstCompName: "",
     secondCompName: "",
-    thirdCompName: ""
+    thirdCompName: "",
+    datetemp: ""
   },
   navbarTap: function(e) {
     this.setData({
@@ -57,7 +58,58 @@ Page({
   },
 
   onReady: function() {},
+  checkfile: function() {
+    var that = this;
+    //这里没有startTime，默认设置为今天
+    var url_ =
+      config.signDownloadUrl +
+      "?&loginFlag=" +
+      wx.getStorageSync("loginFlag") +
+      "&itemId=" +
+      that.data.itemId +
+      "&party=" +
+      that.data.party;
+    var tempPath = [];
+    wx.showLoading({
+      title: "请稍等..."
+    });
+    that.download(url_, 0, tempPath);
+  },
+  download(url, index, tempPath) {
+    var that = this;
 
+    wx.downloadFile({
+      url: url + "&index=" + index,
+      success: function(res) {
+        console.log(url);
+        console.log(index, "------", res);
+        if (res.statusCode == 200) {
+          tempPath.push(res.tempFilePath);
+          console.log(index);
+          that.download(url, index + 1, tempPath);
+        } else {
+          wx.hideLoading();
+          that.setData({
+            imageSrc: tempPath
+          });
+          console.log(tempPath);
+          var urlTemp =
+            "../BillImage/BillImage" + "?filePath=" + JSON.stringify(tempPath);
+          wx.navigateTo({
+            url: urlTemp
+          });
+        }
+      },
+      fail: function(res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: "附件下载失败",
+          icon: "none"
+        });
+        console.log("********", res);
+      }
+    });
+  },
   /* 加载页面 */
   onLoad: function(options) {
     var res = wx.getStorageSync("BillInfo");
@@ -75,7 +127,8 @@ Page({
       thirdSig: res.thirdSig,
       firstCompName: res.firstCompName,
       secondCompName: res.secondCompName,
-      thirdCompName: res.thirdCompName
+      thirdCompName: res.thirdCompName,
+      datetemp: res.time
     });
     if (options.tp == 7) {
       this.setData({
@@ -104,7 +157,7 @@ Page({
       t2 = "拒签";
     }
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     wx.request({

@@ -4,7 +4,16 @@
 view {
   display: flex;
 }
-
+.uploadImg{
+  position: absolute;
+  right: 30rpx;
+  text-align: right;
+  align-items: center;
+}
+.tab-icon {
+	width: 40rpx;
+	height: 40rpx;
+}
 page {
   overflow: auto;
   height: 100%;
@@ -172,13 +181,6 @@ page {
   background: rgba(177, 182, 177, 0.603);
 }
 
-.list-BILL-1 {
-  height: 110rpx;
-  display: flex;
-  align-items: center;
-  border-bottom: 2rpx solid #ddd;
-}
-
 .icon-BILL-1 {
   width: 39rpx;
   height: 39rpx;
@@ -213,12 +215,14 @@ page {
   background-color: #71a16d;
   color: white;
   align-self: center;
+  margin-top:60rpx;
 }
 .button-BILL-1-p {
   margin: 10rpx auto;
   background-color: #537750;
   color: white;
   align-self: center;
+  margin-top:60rpx;
 }
 button::after {
   border: none;

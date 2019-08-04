@@ -1,16 +1,16 @@
 <!-- index.wxml -->
 <view class="user-container bg-white">
-    <view class="userinfo">
-        <block wx:if="{{!hasLogin}}">
-            <image class="userinfo-avatar" src="../../images/login1.png" background-size="cover" catchtap="doLogin"></image>
-            <button open-type="getUserInfo" bindgetuserinfo="doLogin">登录</button>
-        </block>
-        <block wx:else>
-            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-            <button open-type="getUserInfo" bindgetuserinfo="doLogin">重新登录</button>
-        </block>
-    </view>
+  <view class="userinfo">
+    <block wx:if="{{!hasLogin}}">
+      <image class="userinfo-avatar" src="../../images/login1.png" background-size="cover" catchtap="doLogin"></image>
+      <button open-type="getUserInfo" bindgetuserinfo="doLogin">登录</button>
+    </block>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <button open-type="getUserInfo" bindgetuserinfo="doLogin">重新登录</button>
+    </block>
+  </view>
 </view>
 <!-- 未登录模态弹窗 -->
 <!-- mask -->
@@ -18,42 +18,56 @@
 <!-- content -->
 <!-- 使用animation属性指定需要执行的动画 -->
 <view animation="{{animationData_2}}" class="drawer_box" wx:if="{{modalShow}}">
-    <!-- drawer content -->
-    <view class="drawer_title">未登录</view>
-    <view class="drawer_content">
-        <view>请先登录</view>
-    </view>
-    <view class="btn_ok" bindtap="modalConfirm" data-statu="close">确定</view>
+  <!-- drawer content -->
+  <view class="drawer_title">未登录</view>
+  <view class="drawer_content">
+    <view>请先登录</view>
+  </view>
+  <view class="btn_ok" bindtap="modalConfirm" data-statu="close">确定</view>
 </view>
 <view class="view-login">
-    <view class="tab-item" hover-class="tab-item-hover" catchtap="goSign" data-statu="open">
-        <view class="icon_style">
-            <image src="../../images/4.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">记录签名</text>
-        </view>
-        <text class="tab-text" wx:if="{{hasLogin}}">{{numSign}}</text>
-        <text class="tab-text" wx:else></text>
+  <view class="tab-item" hover-class="tab-item-hover" catchtap="goSign" data-statu="open">
+    <view class="icon_style">
+      <image src="../../images/4.png" mode="aspectFit" class="tab-icon"></image>
+      <text class="tab-text">记录签名</text>
     </view>
-    <view class="tab-item border-bottom" hover-class="tab-item-hover" catchtap="goApply">
-        <view class="icon_style">
-            <image src="../../images/manage.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">申请查询</text>
-        </view>
-        <text class="tab-text" wx:if="{{hasLogin}}">{{numApply}}</text>
-        <text class="tab-text" wx:else></text>
+    <view class="icon_style">
+      <text class="tab-text" wx:if="{{hasLogin}}">{{numSign}}</text>
+      <text class="tab-text" wx:else></text>
+      <image src="../../images/left.png" mode="aspectFit" class="tab-icon"></image>
     </view>
-    <view class="tab-item" hover-class="tab-item-hover" catchtap="goAuth" data-statu="open">
-        <view class="icon_style">
-            <image src="../../images/coin.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">授权查询</text>
-        </view>
-        <text class="tab-text" wx:if="{{hasLogin}}">{{numAutho}}</text>
-        <text class="tab-text" wx:else></text>
+  </view>
+  <view class="tab-item border-bottom" hover-class="tab-item-hover" catchtap="goApply">
+    <view class="icon_style">
+      <image src="../../images/manage.png" mode="aspectFit" class="tab-icon"></image>
+      <text class="tab-text">申请查询</text>
     </view>
-    <view class="tab-item border-bottom" hover-class="tab-item-hover" catchtap="toComReg">
-        <view class="icon_style">
-            <image src="../../images/my.png" mode="aspectFit" class="tab-icon"></image>
-            <text class="tab-text">注册账本</text>
-        </view>
+    <view class="icon_style">
+      <text class="tab-text" wx:if="{{hasLogin}}">{{numApply}}</text>
+      <text class="tab-text" wx:else></text>
+      <image src="../../images/left.png" mode="aspectFit" class="tab-icon"></image>
     </view>
+  </view>
+
+  <view class="tab-item" hover-class="tab-item-hover" catchtap="goAuth" data-statu="open">
+    <view class="icon_style">
+      <image src="../../images/coin.png" mode="aspectFit" class="tab-icon"></image>
+      <text class="tab-text">授权查询</text>
+    </view>
+    <view class="icon_style">
+      <text class="tab-text" wx:if="{{hasLogin}}">{{numAutho}}</text>
+      <text class="tab-text" wx:else></text>
+      <image src="../../images/left.png" mode="aspectFit" class="tab-icon"></image>
+    </view>
+
+  </view>
+  <view class="tab-item border-bottom" hover-class="tab-item-hover" catchtap="toComReg">
+    <view class="icon_style">
+      <image src="../../images/my.png" mode="aspectFit" class="tab-icon"></image>
+      <text class="tab-text">注册账本</text>
+    </view>
+    <view class="icon_style">
+      <image src="../../images/left.png" mode="aspectFit" class="tab-icon"></image>
+    </view>
+  </view>
 </view>

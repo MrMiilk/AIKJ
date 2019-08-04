@@ -35,6 +35,7 @@ Page({
     // var authET = util.formatToDate(this.data.authEndTime) / 1000 + 14400;
     var recordST = util.formatToDate(this.data.recordStartTime) / 1000 + 14400;
     var recordET = util.formatToDate(this.data.recordEndTime) / 1000 + 14400;
+    
     if (recordST > recordET) {
       wx.showToast({
         title: "时间错误",
@@ -43,11 +44,8 @@ Page({
       return;
     }
     var date = new Date();
-    date = util.formatToDate(date) / 1000 + 14400;
-    wx.showLoading({
-      title: "请稍后...",
-      mask: true
-    });
+    var dateTemp = util.formatToDate(date) / 1000 + 14400;
+    var type = e.target.dataset["type"];
     wx.request({
       url: api.queryUrl,
       //url: 'http://127.0.0.1:80',
@@ -58,17 +56,34 @@ Page({
         // "authEndTime": authET,
         startTime: recordST,
         endTime: recordET,
-        timeStamp: date // TODO: 发起请求的时间，unix时间戳
+        timeStamp: dateTemp ,// TODO: 发起请求的时间，unix时间戳
+        attachment:0,
       },
       method: "POST",
       success: function(e) {
+        console.log(e);
         wx.hideLoading();
-        if (e.statusCode == 200) {
+        if (e.statusCode == 200 && type== "form") {
           wx.setStorageSync("table", e.data);
           wx.navigateTo({
             url: "../table/table"
           });
-        } else {
+        } 
+        else if (e.statusCode == 200 && type == "bill"){
+          if(e.data.flowAccount.length==0){
+            wx.showToast({
+              title: '所选时间无流水账记录',
+              icon:'none',
+            })
+          }
+          else{
+            wx.setStorageSync("cashFlow", e.data);
+            wx.navigateTo({
+              url: "../BillInfo/Billinfo" + "?recordStartTime=" + recordST + "&recordEndTime=" + recordET + "&date=" + dateTemp,
+            });
+          }
+        }
+        else {
           wx.showToast({
             title: e.data,
             icon: "none"
@@ -96,7 +111,6 @@ Page({
       });
     }
   },
-
   onReady: function() {
     this.setData({
       recordStartTime: util.formatTime(new Date(), "yyyy-MM-dd"),

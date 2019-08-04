@@ -68,6 +68,15 @@
             <text class="text-BILL-1">第三方</text>
             <input class="weui-input_BILL_2" bindinput="thirdCompanyFunction" placeholder="请输入第三方  " value="{{thirdCompName}}" />
           </view>
+          <view class="list-BILL-1" bindtap="upload" hover-class="list-BILL-1-p">
+            <image class="icon-BILL-1" src="../../images/attach.png"></image>
+            <text class="text-BILL-1">附件</text>
+            <view class="uploadImg">
+              <text>{{filetext}}</text>
+              <image class="tab-icon" src="../../images/left.png"></image>
+            </view>
+
+          </view>
           <!-- 签名按钮 -->
         </view>
         <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="confirmData">

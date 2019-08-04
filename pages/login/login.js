@@ -50,7 +50,7 @@ Page({
   doLogin: function() {
     let that = this;
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     app.doLogin(() => {
@@ -102,7 +102,7 @@ Page({
 
   goApply: function() {
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     setTimeout(() => {
@@ -165,7 +165,7 @@ Page({
 
   goAuth: function() {
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     setTimeout(() => {
@@ -195,7 +195,7 @@ Page({
 
   goSign: function() {
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     setTimeout(() => {

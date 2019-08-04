@@ -60,76 +60,11 @@ Page({
     let index = e.currentTarget.id;
     let url_ = "../authorize/authorize?" + "tp=" + e.target.dataset["tp"];
     if (e.target.dataset["tp"] == "1") {
-      url_ =
-        url_ +
-        "&companyName=" +
-        this.data.grantorUnautho[index].user +
-        "&id=" +
-        this.data.grantorUnautho[index].id +
-        "&authStartTime=" +
-        util.msToDate(this.data.grantorUnautho[index].authStartTime)
-          .withoutTime +
-        "&authEndTime=" +
-        util.msToDate(this.data.grantorUnautho[index].authEndTime).withoutTime +
-        "&recordStartTime=" +
-        util.msToDate(this.data.grantorUnautho[index].recordStartTime)
-          .withoutTime +
-        "&recordEndTime=" +
-        util.msToDate(this.data.grantorUnautho[index].recordEndTime)
-          .withoutTime +
-        "&type=" +
-        this.data.grantorUnautho[index].type +
-        "&recordId=" +
-        this.data.grantorUnautho[index].recordId +
-        "&t=" +
-        e.target.dataset["tp"];
+      wx.setStorageSync("infoQuery", this.data.grantorUnautho[index]); 
     } else if (e.target.dataset["tp"] == "2") {
-      url_ =
-        url_ +
-        "&companyName=" +
-        this.data.grantorAutho[index].user +
-        "&id=" +
-        this.data.grantorAutho[index].id +
-        "&authStartTime=" +
-        util.msToDate(this.data.grantorAutho[index].authStartTime).withoutTime +
-        "&authEndTime=" +
-        util.msToDate(this.data.grantorAutho[index].authEndTime).withoutTime +
-        "&recordStartTime=" +
-        util.msToDate(this.data.grantorAutho[index].recordStartTime)
-          .withoutTime +
-        "&recordEndTime=" +
-        util.msToDate(this.data.grantorAutho[index].recordEndTime).withoutTime +
-        "&type=" +
-        this.data.grantorAutho[index].type +
-        "&recordId=" +
-        this.data.grantorAutho[index].recordId +
-        "&t=" +
-        e.target.dataset["tp"];
+      wx.setStorageSync("infoQuery", this.data.grantorAutho[index]); 
     } else if (e.target.dataset["tp"] == "3") {
-      url_ =
-        url_ +
-        "&companyName=" +
-        this.data.grantorUnauthoRefuse[index].user +
-        "&id=" +
-        this.data.grantorUnauthoRefuse[index].id +
-        "&authStartTime=" +
-        util.msToDate(this.data.grantorUnauthoRefuse[index].authStartTime)
-          .withoutTime +
-        "&authEndTime=" +
-        util.msToDate(this.data.grantorUnauthoRefuse[index].authEndTime)
-          .withoutTime +
-        "&recordStartTime=" +
-        util.msToDate(this.data.grantorUnauthoRefuse[index].recordStartTime)
-          .withoutTime +
-        "&recordEndTime=" +
-        util.msToDate(this.data.grantorUnauthoRefuse[index].recordEndTime)
-          .withoutTime +
-        "&type=" +
-        this.data.grantorUnauthoRefuse[index].type +
-        "&recordId=" +
-        this.data.grantorUnauthoRefuse[index].recordId +
-        "&t=" +
-        e.target.dataset["tp"];
+      wx.setStorageSync("infoQuery", this.data.grantorUnauthoRefuse[index]); 
     }
     wx.navigateTo({
       url: url_,

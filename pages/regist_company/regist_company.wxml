@@ -4,6 +4,7 @@
     <form catchsubmit="formSubmit" catchreset="formReset">
       <!-- 名称 -->
       <view class="page-section">
+        <image class="icon-BILL-2" src="../../images/comp.png"></image>
         <view class="page-section-title">公司名称</view>
         <view class="weui-cell__bd">
           <input class="weui-input" bindinput='bindNameInput' name="name" value="{{name}}" placeholder="" />
@@ -11,6 +12,7 @@
       </view>
       <!-- 联系方式 -->
       <view class="page-section">
+      <image class="icon-BILL-2" src="../../images/phone.png"></image>
         <view class="page-section-title">联系方式</view>
         <view class="weui-cell__bd">
           <input class="weui-input" type='number' bindinput='bindPhoneInput' name="contract_content" placeholder="手机号码" value="{{phone}}" />
@@ -18,6 +20,7 @@
       </view>
       <!-- 验证码 -->
       <view class="page-section">
+      <image class="icon-BILL-2" src="../../images/code.png"></image>
         <view class="page-section-title">验证码</view>
         <view class="weui-cell__bd">
           <input class="weui-input_min" bindinput='bindCodeInput' value="{{code}}" name="contract_content" placeholder="" />
@@ -28,6 +31,7 @@
       </view>
       <!-- 经营范围 -->
       <view class="page-section">
+      <image class="icon-BILL-2" src="../../images/sell.png"></image>
         <view class="page-section-title">经营范围</view>
         <textarea class="message" value="{{currentText}}" placeholder="输入公司经营范围，若有多个，请用逗号分开" bindinput='getSellArea'></textarea>
       </view>

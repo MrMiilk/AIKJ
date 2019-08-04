@@ -61,78 +61,15 @@ Page({
   toDetail: function(e) {
     let index = e.currentTarget.id;
     console.log(e);
-    let url_ = "../apply/apply?" + "tp=" + e.target.dataset["tp"];
+    let url_ = "../apply/apply?" + "&tp=" + e.target.dataset["tp"];
     if (e.target.dataset["tp"] == "4") {
-      url_ =
-        url_ +
-        "&companyName=" +
-        this.data.granteeUnautho[index].user +
-        "&id=" +
-        this.data.granteeUnautho[index].id +
-        "&authStartTime=" +
-        util.msToDate(this.data.granteeUnautho[index].authStartTime)
-          .withoutTime +
-        "&authEndTime=" +
-        util.msToDate(this.data.granteeUnautho[index].authEndTime).withoutTime +
-        "&recordStartTime=" +
-        util.msToDate(this.data.granteeUnautho[index].recordStartTime)
-          .withoutTime +
-        "&recordEndTime=" +
-        util.msToDate(this.data.granteeUnautho[index].recordEndTime)
-          .withoutTime +
-        "&type=" +
-        this.data.granteeUnautho[index].type +
-        "&recordId=" +
-        this.data.granteeUnautho[index].recordId +
-        "&t=" +
-        e.target.dataset["tp"];
+      {
+        wx.setStorageSync("infoQuery",this.data.granteeUnautho[index]);
+      }
     } else if (e.target.dataset["tp"] == "5") {
-      url_ =
-        url_ +
-        "&companyName=" +
-        this.data.granteeAutho[index].user +
-        "&id=" +
-        this.data.granteeAutho[index].id +
-        "&authStartTime=" +
-        util.msToDate(this.data.granteeAutho[index].authStartTime).withoutTime +
-        "&authEndTime=" +
-        util.msToDate(this.data.granteeAutho[index].authEndTime).withoutTime +
-        "&recordStartTime=" +
-        util.msToDate(this.data.granteeAutho[index].recordStartTime)
-          .withoutTime +
-        "&recordEndTime=" +
-        util.msToDate(this.data.granteeAutho[index].recordEndTime).withoutTime +
-        "&type=" +
-        this.data.granteeAutho[index].type +
-        "&recordId=" +
-        this.data.granteeAutho[index].recordId +
-        "&t=" +
-        e.target.dataset["tp"];
+      wx.setStorageSync("infoQuery", this.data.granteeAutho[index]);
     } else if (e.target.dataset["tp"] == "6") {
-      url_ =
-        url_ +
-        "&companyName=" +
-        this.data.granteeUnauthoRefuse[index].user +
-        "&id=" +
-        this.data.granteeUnauthoRefuse[index].id +
-        "&authStartTime=" +
-        util.msToDate(this.data.granteeUnauthoRefuse[index].authStartTime)
-          .withoutTime +
-        "&authEndTime=" +
-        util.msToDate(this.data.granteeUnauthoRefuse[index].authEndTime)
-          .withoutTime +
-        "&recordStartTime=" +
-        util.msToDate(this.data.granteeUnauthoRefuse[index].recordStartTime)
-          .withoutTime +
-        "&recordEndTime=" +
-        util.msToDate(this.data.granteeUnauthoRefuse[index].recordEndTime)
-          .withoutTime +
-        "&type=" +
-        this.data.granteeUnauthoRefuse[index].type +
-        "&recordId=" +
-        this.data.granteeUnauthoRefuse[index].recordId +
-        "&t=" +
-        e.target.dataset["tp"];
+      wx.setStorageSync("infoQuery", this.data.granteeUnauthoRefuse[index]);
     }
     wx.navigateTo({
       url: url_,

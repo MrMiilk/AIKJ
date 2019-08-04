@@ -1,7 +1,7 @@
 <view class='container-BILL'>
   <scroll-view scroll-y="true" class="tab-content">
     <view class='list-BILL-1_p'>
-      <text class='tabitem'>记录</text>
+      <text class='tabitem'>账单</text>
     </view>
     <view class="Form">
       <view class="list-BILL-1">
@@ -60,14 +60,14 @@
       </view>
       <!-- 完成按钮 -->
       <view>
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="billnext" data-type="before">
+          上一页
+        </button>
         <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap='goSignInfo'>
           查看签名
         </button>
-        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="goSignBill" data-type="agree" wx:if="{{isClick}}">
-          签名
-        </button>
-        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="goSignBill" data-type="refuse" wx:if="{{isClick}}">
-          拒签
+        <button class="button-BILL-1" hover-class="button-BILL-1-p" bindtap="billnext" data-type="next">
+          下一页
         </button>
       </view>
     </view>

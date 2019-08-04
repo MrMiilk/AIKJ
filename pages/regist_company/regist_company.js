@@ -116,7 +116,7 @@ Page({
     var that = this;
     if (this.data.code == "1234") {
       wx.showLoading({
-        title: "请稍后...",
+        title: "请稍等...",
         mask: true
       });
       wx.request({

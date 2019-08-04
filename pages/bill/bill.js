@@ -11,12 +11,12 @@ Page({
     tabitemForm: {},
     tabitemSign: {},
     activeTabId: null,
-
+    filetext: "上传",
     /* 语音识别信息 */
     currentText: "", //识别内容
     isClick: false,
     /* 记账相关信息 */
-    summary: null, //分类信息
+    summary: "", //null, //分类信息
     debit: "", //借方科目
     debitAmount: null, //借方金额
     credit: "", //贷方科目
@@ -24,22 +24,28 @@ Page({
     date: "", //日期
     secondCompName: "",
     thirdCompName: "",
-    sendButtonText: "生成报表"
+    sendButtonText: "生成报表",
+    filePath: [],
+    timestamp: ""
   },
 
   tabChange(e) {
     if (e.detail.source == "touch") {
       var id = e.detail.currentItemId;
+      console.log(e.detail.currentItemId);
       this.setActiveTab(id);
     }
   },
 
   tabclick(e) {
     var id = e.target.id;
+    console.log(id);
     this.setActiveTab(id);
   },
 
   setActiveTab(id) {
+    console.log(id);
+    console.log(this.data.activeTabId);
     var rect = this.data[id];
     if (rect) {
       this.animation.width(rect.width).translate(rect.left, 0);
@@ -77,7 +83,16 @@ Page({
       icon: "none"
     });
   },
-
+  upload: function() {
+    console.log("上传再次查看", this.data.filePath);
+    var url_ =
+      "../uploadImage/uploadImage" +
+      "?filePath=" +
+      JSON.stringify(this.data.filePath);
+    wx.navigateTo({
+      url: url_
+    });
+  },
   initRecord: function() {
     //有新的识别内容返回，则会调用此事件
     manager.onRecognize = res => {
@@ -102,7 +117,7 @@ Page({
     var that = this;
 
     wx.showLoading({
-      title: "请稍后...",
+      title: "请稍等...",
       mask: true
     });
     /* 得到完整识别内容发给语音服务器处理 */
@@ -228,13 +243,17 @@ Page({
     }
 
     //精确到秒，定位为当天12点
+    var timestamp = parseInt(new Date().valueOf() / 1000);
+    that.setData({
+      timestamp: timestamp
+    });
     var unixtime = util.formatToDate(that.data.date) / 1000 + 14400;
     console.log("交易方信息");
     console.log(that.data.secondCompName);
     wx.showLoading({
-      title: "请稍后...",
-      mask: true
+      title: "请稍等..."
     });
+
     wx.request({
       url: config.insertUrl,
       data: {
@@ -246,38 +265,94 @@ Page({
         creditAmount: parseFloat(that.data.creditAmount),
         time: unixtime,
         secondCompName: that.data.secondCompName,
-        thirdCompName: that.data.thirdCompName
+        thirdCompName: that.data.thirdCompName,
+        timeStamp: timestamp
       },
-      method: "POST",
-      success: function(res) {
-        wx.hideLoading();
-        // TODO:应该使用返回的数据进行判断
+      method: "post",
+      success(res) {
+        console.log("------", res);
         if (res.statusCode == 200) {
-          wx.showToast({
-            title: "记账成功",
-            icon: "success",
-            duration: 500,
-            success: function() {
-              // util.getSignList(() => {});
-            }
-          });
+          var itemId = res.data;
+          console.log(that.data.filePath);
+          // 上传附件
+          if (that.data.filePath.length) {
+            that.uploadDIY(
+              that.data.filePath,
+              0,
+              that.data.filePath.length,
+              itemId,
+              unixtime
+            );
+          } else {
+            wx.hideLoading();
+            wx.showToast({
+              title: "记录成功",
+              icon: "success"
+            });
+          }
         } else {
+          wx.hideLoading();
           wx.showToast({
             title: res.data,
-            icon: "none",
-            duration: 500,
-            success: function() {}
+            icon: "none"
           });
         }
       },
-      fail: function(res) {
-        // 网络请求失败
-        console.log("失败：" + res);
+      fail(res) {
         wx.hideLoading();
+        wx.showToast({
+          title: "记录失败",
+          icon: "none"
+        });
+        console.log("失败");
       }
     });
   },
-
+  uploadDIY(filePaths, i, length, itemId, unixtime) {
+    if (i == length) {
+      wx.hideLoading();
+      wx.showToast({
+        title: "记录成功",
+        icon: "success"
+      });
+      return;
+    }
+    var that = this;
+    wx.uploadFile({
+      url: config.uploadUrl,
+      filePath: filePaths[i],
+      name: "file",
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
+      formData: {
+        loginFlag: wx.getStorageSync("loginFlag"),
+        summary: that.data.summary,
+        debit: that.data.debit,
+        debitAmount: parseFloat(that.data.debitAmount),
+        credit: that.data.credit,
+        creditAmount: parseFloat(that.data.creditAmount),
+        time: unixtime,
+        timeStamp: parseInt(that.data.timestamp),
+        secondCompName: that.data.secondCompName,
+        thirdCompName: that.data.thirdCompName,
+        index: i,
+        itemId: itemId
+      },
+      success: res => {
+        console.log(">>>>>>>>", res);
+        that.uploadDIY(filePaths, i + 1, length, itemId, unixtime);
+        console.log("成功上传");
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: "附件上传失败",
+          icon: "none"
+        });
+      }
+    });
+  },
   onLoad: function(options) {
     // 页面加载 options为页面跳转所带来的参数
     this.initRecord();
@@ -288,15 +363,17 @@ Page({
     });
   },
 
-  onShow: function() {
+  onShow: function(res) {
     /* 滑动动画相关 */
     var query = wx.createSelectorQuery().in(this),
       _this = this;
+    console.log("Bill:", this.data.filePath);
     _this.animation = wx.createAnimation({
       duration: 500, //动画持续时间
       timingFunction: "ease" //动画效果
     });
     query.select("#tabitemForm").boundingClientRect(function(rect) {
+      console.log("来自show");
       _this.setData({
         tabitemForm: rect
       });
@@ -305,7 +382,6 @@ Page({
       _this.setData({
         tabitemVoice: rect
       });
-      _this.setActiveTab("tabitemVoice");
     });
     query.exec();
   }

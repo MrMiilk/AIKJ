@@ -4,20 +4,26 @@
 view {
   display: flex;
 }
-.list_show{
-  border-bottom: 2rpx solid #ddd
+.uploadImg{
+  position: absolute;
+  right: 30rpx;
+  text-align: right;
+  align-items: center;
 }
 page {
   overflow: auto;
   height: 100%;
 }
-.attach{
-  display: flex;
-  justify-content: space-around;
-}
 .tab-icon {
 	width: 40rpx;
 	height: 40rpx;
+}
+.container-BILL {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .section-body {
@@ -73,12 +79,7 @@ page {
   display: flex;
   flex-direction: row;
 }
-.uploadImg{
-  position: absolute;
-  right: 30rpx;
-  text-align: right;
-  align-items: center;
-}
+
 .Form {
   display: flex;
   flex-direction: column;
@@ -86,7 +87,6 @@ page {
 
 .tabitem {
   /* width: 160rpx; */
-  margin-bottom: 50rpx;
   text-align: center;
   color: #e0e0e0;
   font-weight: 400;
@@ -209,16 +209,21 @@ page {
   margin-right: 36rpx;
 }
 .button-BILL-1 {
-  margin: 10px auto;
+  height: 100rpx;
+  width: 240rpx;
+  margin: 10rpx auto;
   background-color: #71a16d;
   color: white;
   align-self: center;
+  margin-top:60rpx;
 }
 .button-BILL-1-p {
-  margin: 10px auto;
+  margin: 10rpx auto;
   background-color: #537750;
   color: white;
   align-self: center;
+  margin-top:60rpx;
+
 }
 button::after {
   border: none;
@@ -231,18 +236,12 @@ button::after {
   justify-content: center;
   display: flex;
 }
-.btn_up{
-  width:320rpx;
+.list-BILL-1_p {
   height: 80rpx;
-  border-radius: 25rpx;
-  background-color: #8ba693;
-  position: absolute;
-  right:30rpx;
-  box-shadow: 0 2px 16px 2px rgba(0, 0, 0, 0.03);
-}
-.name{
-   text-align: center;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  font-size: 4.5vw;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 2rpx solid #ddd;
+  background-color: #8ba693;
 }
