@@ -178,11 +178,13 @@ Page({
           title: t2 + "成功",
           icon: "success"
         });
-        util.getSignList(() =>
-          wx.navigateBack({
-            delta: 1
-          })
-        );
+        util.getSignList(i => {
+          if (i == 2) {
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        });
       },
       fail: function(e) {
         wx.hideLoading();

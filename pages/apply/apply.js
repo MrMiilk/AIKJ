@@ -9,7 +9,7 @@ Page({
     authEndTime: "",
     recordStartTime: "",
     recordEndTime: "",
-    begin: "1950-06-01",
+    begin: "2000-06-01",
     end: "2100-06-01",
     name: "",
     new: false,
